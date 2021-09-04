@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "sucrase ./src -d ./build --transforms imports",
-    "dev": "nodemon src/server.js"
+    "dev": "npm rum build && nodemon build/server.js"
   },
   "keywords": [],
   "author": "",

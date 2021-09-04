@@ -9,12 +9,12 @@ class App {
 
 
     middleware(){
-        this.server.use(_express2.default.json())
+        this.server.use(_express2.default.json());
 
     }
 
     routes(){
-        this.server.use(_routes2.default.call(void 0, ));
+        this.server.use(_routes2.default);
     }
 }
 
