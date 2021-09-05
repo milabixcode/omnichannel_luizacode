@@ -13,9 +13,15 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "sucrase": "^3.20.1"
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
+    "pq": "0.0.3",
+    "sequelize": "^6.6.5",
+    "sucrase": "^3.20.1",
+    "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
-    "nodemon": "^2.0.12"    
+    "nodemon": "^2.0.12",
+    "sequelize-cli": "^6.2.0"
   }
 }

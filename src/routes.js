@@ -1,10 +1,9 @@
 import { Router } from 'express';
+import ProductController from './app/controller/ProductController';
 
 const routes = new Router();
 
-routes.get('/produto', (req, res) => {
-    res.json({ message: "Este é um endpoint que retornará todos os produtos"})
-});
+routes.get('/product', ProductController.listAllProducts)
 
 routes.get('/loja', (req, res) => {
     res.json({ message: 'Este é um endpoint que retornará todas as lojas físicas'})
