@@ -15,8 +15,8 @@ Chauana Januario de Oliveira
 * LinkedIn: 
 
 Elis Nunes
-* GitHub:
-* LinkedIn: 
+* GitHub: https://github.com/Elis-Carmezim
+* LinkedIn: https://www.linkedin.com/in/elis-nunes/
 
 Laura Xavier Pereira
 * GitHub:
