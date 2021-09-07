@@ -1,10 +1,9 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true});var _express = require('express');
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _express = require('express');
+var _ProductController = require('./app/controller/ProductController'); var _ProductController2 = _interopRequireDefault(_ProductController);
 
 const routes = new (0, _express.Router)();
 
-routes.get('/produto', (req, res) => {
-    res.json({ message: "Este é um endpoint que retornará todos os produtos"})
-});
+routes.get('/product', _ProductController2.default.listAllProducts)
 
 routes.get('/loja', (req, res) => {
     res.json({ message: 'Este é um endpoint que retornará todas as lojas físicas'})
