@@ -5,9 +5,9 @@ class Product extends Model {
         super.init({
             productId: {
                 type: Sequelize.INTEGER,
-                primaryKey: true
+                primaryKey: true,
+                autoIncrement: true
             },
-            storeId: Sequelize.INTEGER,
             productName: Sequelize.STRING,
             categoryName: Sequelize.STRING,
             quantity: Sequelize.INTEGER,
