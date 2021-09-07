@@ -3,17 +3,17 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.createTable('products', {
-      product_id: {
+      productId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true
       },
-      product_name: {
+      productName: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      category_name: {
+      categoryName: {
         type: Sequelize.STRING,
         allowNull: false
       },
@@ -21,15 +21,15 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      image_url: {
+      imageUrl: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      created_at: {
+      createdAt: {
         type: Sequelize.DATE,
         allowNull: false
       },
-      updated_at: {
+      updatedAt: {
         type: Sequelize.DATE,
         allowNull: false
       }

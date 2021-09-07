@@ -7,6 +7,8 @@ routes.get('/product', _ProductController2.default.listAllProducts);
 
 routes.post('/product', _ProductController2.default.saveProduct);
 
+routes.put('/product', _ProductController2.default.updateProduct);
+
 routes.get('/loja', (req, res) => {
     res.json({ message: 'Este é um endpoint que retornará todas as lojas físicas'})
 });
