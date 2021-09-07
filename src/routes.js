@@ -3,7 +3,9 @@ import ProductController from './app/controller/ProductController';
 
 const routes = new Router();
 
-routes.get('/product', ProductController.listAllProducts)
+routes.get('/product', ProductController.listAllProducts);
+
+routes.post('/product', ProductController.saveProduct);
 
 routes.get('/loja', (req, res) => {
     res.json({ message: 'Este é um endpoint que retornará todas as lojas físicas'})

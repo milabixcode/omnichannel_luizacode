@@ -9,10 +9,6 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true
       },
-      store_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-      },
       product_name: {
         type: Sequelize.STRING,
         allowNull: false
@@ -26,7 +22,7 @@ module.exports = {
         allowNull: false
       },
       image_url: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false
       },
       created_at: {
