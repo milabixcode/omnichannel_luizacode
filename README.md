@@ -3,8 +3,8 @@
 ## Equipe: NaN (Not a Name)
 
 Bianca da Silva Gonçalves
-* GitHub:
-* LinkedIn: 
+* GitHub: https://github.com/bianksilva
+* LinkedIn: https://www.linkedin.com/in/bianca-silva-goncalves/
 
 Camila Vieira Ferrari Correia
 * GitHub: https://github.com/milabixcode
