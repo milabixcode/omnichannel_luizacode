@@ -17,6 +17,9 @@ class Product extends Model {
         },
         {
             sequelize,
+            underscored:false,
+            tableName:"products"
+
         });
         return this;
     }
