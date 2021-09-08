@@ -10,7 +10,7 @@ routes.post('/product', ProductController.saveProduct);
 
 routes.put('/product', ProductController.updateProduct);
 
-routes.put('/product', ProductController.deleteProduct);
+routes.delete('/product', ProductController.deleteProduct);
 
 routes.get('/store', StoreController.listAllStores);
 
