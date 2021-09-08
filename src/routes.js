@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import ProductController from './app/controller/ProductController';
+import StoreController from './app/controller/StoreController';
 
 const routes = new Router();
 
@@ -9,9 +10,7 @@ routes.post('/product', ProductController.saveProduct);
 
 routes.put('/product', ProductController.updateProduct);
 
-routes.get('/loja', (req, res) => {
-    res.json({ message: 'Este é um endpoint que retornará todas as lojas físicas'})
-});
+routes.get('/store', StoreController.listAllStores);
 
 routes.post('/cliente', (req, res) => {
     res.json({ message: 'Este é um endpoint que cadastrará os clientes'})
