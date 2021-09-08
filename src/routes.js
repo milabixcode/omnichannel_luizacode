@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import ClientController from './app/controller/ClientController';
 import ProductController from './app/controller/ProductController';
 import StoreController from './app/controller/StoreController';
 
@@ -15,9 +16,7 @@ routes.put('/store', StoreController.updateStore);
 routes.delete('/store', StoreController.deleteStore);
 
 
-routes.post('/cliente', (req, res) => {
-    res.json({ message: 'Este é um endpoint que cadastrará os clientes'})
-});
+routes.post('/client', ClientController.saveClient);
 
 routes.put('/lista-de-compra', (req, res) => {
     res.json({ message: 'Este é um endpoint que adiciona um produto na lista de compra do cliente'})
