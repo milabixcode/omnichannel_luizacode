@@ -51,6 +51,26 @@ class ProductController {
     
     };
 
+    async deleteProduct(require, response) {
+        console.log('Excluindo produto:', require.body);
+        const schema = Yup.object().shape({
+            productId: Yup.number().required()
+        });
+    
+        return await schema
+        .validate(require.body)
+        .then(async function(validatedProduct) {
+            const product = await Product
+                .findByPk(validatedProduct.productId);
+            const deleteProduct = await product
+                .delete(validatedProduct)
+            return response.status(200).json(deleteProduct);
+        })
+        .catch(async function(err) {
+            return response.status(401).json({ message: err })
+        });
+    };
+
     
 }
 
