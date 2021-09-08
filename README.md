@@ -2,29 +2,15 @@
 
 ## Equipe: NaN (Not a Name)
 
-Bianca da Silva Gonçalves
-* GitHub: https://github.com/bianksilva
-* LinkedIn: https://www.linkedin.com/in/bianca-silva-goncalves/
-
-Camila Vieira Ferrari Correia
-* GitHub: https://github.com/milabixcode
-* LinkedIn: https://www.linkedin.com/in/camila-ferrari/
-
-Chauana Januario de Oliveira
-* GitHub:
-* LinkedIn: 
-
-Elis Nunes
-* GitHub: https://github.com/Elis-Carmezim
-* LinkedIn: https://www.linkedin.com/in/elis-nunes/
-
-Laura Xavier Pereira
-* GitHub:
-* LinkedIn: 
-
-Tatiane  Cacique
-* GitHub: https://github.com/TatianeCacique
-*  LinkedIn: https://www.linkedin.com/in/tatiane-c-592b9a10b/
+#  
+|     Desenvolvedora      |    GitHub     |   LinkedIn   |
+|-------------------------|---------------|--------------|
+|👤 Bianca da Silva Gonçalves|https://github.com/bianksilva|https://www.linkedin.com/in/bianca-silva-goncalves/|
+|👤 Camila Vieira Ferrari Correia|https://github.com/milabixcode|https://www.linkedin.com/in/camila-ferrari/|
+|👤 Chauana Januario de Oliveira|https://github.com/Chauana|https://www.linkedin.com/in/chauana-januario-a00052156/|
+|👤 Elis Nunes|https://github.com/Elis-Carmezim|https://www.linkedin.com/in/elis-nunes/|
+|👤 Laura Xavier Pereira|https://github.com/lauraxavierr|https://www.linkedin.com/in/laura-x-997964117/|
+|👤 Tatiane  Cacique|https://github.com/TatianeCacique|https://www.linkedin.com/in/tatiane-c-592b9a10b/|
 
 ### Tecnologias usadas
 
