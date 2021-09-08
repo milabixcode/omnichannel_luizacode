@@ -1,7 +1,18 @@
 ## **Projeto Final LuizaCode: Omni Channel**
 
-## Equipe: NaN (Not a Name)
+## SUMÁRIO
 
+1. [Equipe](#Equipe)
+2. [Introdução](#INTRODUÇÃO)
+3. [Arquitetura](#ARQUITETURA)
+4. [Tecnologias](#TECNOLOGIAS_UTILIZADAS)
+5. [Infraestrutura](#INFRAESTRUTURA)
+6. [Setup Local](#SETUP_LOCAL)
+7. [Considerações de desenvolvimento](#CONSIDERAÇÕES_DESENVOLVIMENTO)
+
+## ``Equipe``
+
+``NaN (Not a Name)``
 #  
 |     Desenvolvedora      |    GitHub     |   LinkedIn   |
 |-------------------------|---------------|--------------|
@@ -10,16 +21,56 @@
 |👤 Chauana Januario de Oliveira|https://github.com/Chauana|https://www.linkedin.com/in/chauana-januario-a00052156/|
 |👤 Elis Nunes|https://github.com/Elis-Carmezim|https://www.linkedin.com/in/elis-nunes/|
 |👤 Laura Xavier Pereira|https://github.com/lauraxavierr|https://www.linkedin.com/in/laura-x-997964117/|
-|👤 Tatiane  Cacique|https://github.com/TatianeCacique|https://www.linkedin.com/in/tatiane-c-592b9a10b/|
 
-### Tecnologias usadas
+<br>
+
+## ``INTRODUÇÃO``
+
+O objetivo dessa integração é 
+desenvolver um serviço HTTP resolvendo a funcionalidade de
+Omnichannel do cliente. Esse serviço atendem os seguintes requisitos:
+- Adicionar um produto na lista da compra da cliente;
+- Remover um produto da lista da compra da cliente;
+- Consultar todos os produtos disponíveis;
+- Consultar a lista de compras da cliente;
+
+<br>
+
+## ``ARQUITETURA``
+BANCO DE DADOS
+
+![Banco de dados](readme-assents/images/banco-de-dados.png)
+
+<br>
+
+FLUXO DE NAVEGAÇÃO
+![Fluxo de navegação](readme-assents/images/fluxo-de-navegacao-de-compra.png)
+
+<br>
+
+``DESAFIO PROPOSTO``
+-> readme-assents/Desafio-Final.pdf
+
+<br>
+
+
+### ``TECNOLOGIAS_UTILIZADAS``
+
 
 * **Banco de dados:** `ElephantSQL`
 * **API Client:** `Insomnia`
 * **Conexão com o Banco de Dados:** `PostBird`
 * **Editor/IDE:** `Visual Studio Code`
 
-### Rodando o Projeto
+<br>
+
+## ``INFRAESTRUTURA``
+
+
+<br>
+
+## ``SETUP_LOCAL``
+
 
 1. No seu terminal, baixe o projeto através do comando:
 ```
@@ -57,3 +108,6 @@ npm run dev
 Edite o arquivo server.js dentro da pasta src
 ```
 
+<br>
+
+## ``CONSIDERAÇÕES_DESENVOLVIMENTO``
