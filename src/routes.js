@@ -7,7 +7,7 @@ import authMiddleware from './app/middlewares/auth';
 
 const routes = new Router();
 
-routes.use(authMiddleware);
+//routes.use(authMiddleware);
 
 routes.get('/product', ProductController.listAllProducts);
 routes.post('/product', ProductController.saveProduct);
@@ -38,6 +38,16 @@ routes.post('/checkout', (res, req) => {
 routes.get('/pedido', (res,req) => {
     res.json({ message: 'Este é um endpoint que consulta todas as compras do cliente'})
 });
+
+// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup())
+
+// app.get('/terms', (request, response) => {
+//     return response.json({ message: 'Termos de Serviço'});
+
+// });
+
+
+
 
 export default routes;
 
