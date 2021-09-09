@@ -2,44 +2,32 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable('clients', {
-      clientId: {
+    return queryInterface.createTable('adresses', {
+      adressId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true
       },
-      clientFirstName: {
+      adressName: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      clientLastName: {
+      adressNumber: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
+      adressCEP: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      clientCpf: {
-        type: Sequelize.STRING,
-        allowNull: true
-      },
-      clientCnpj: {
-        type: Sequelize.STRING,
-        allowNull: true
-      },
-      clientBirthDate: {
-        type: Sequelize.DATE,
-        allowNull: true
-      },
-      clientEmail: {
+      adressCity: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      clientPassword: {
+      adressState: {
         type: Sequelize.STRING,
         allowNull: false
-      },
-      clientPhone: {
-        type: Sequelize.STRING,
-        allowNull: true
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -53,5 +41,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
+   
   }
 };

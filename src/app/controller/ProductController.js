@@ -3,12 +3,7 @@ import * as Yup from 'yup';
 import Product from '../models/Product';
 
 class ProductController {
-    async listAllProducts(require, response) {
-        const todosOsProdutos = await Product.findAll({where: require.body});
-        console.log('Recuperando todos os produtos', todosOsProdutos);
-        return response.status(200).json(todosOsProdutos);
-    }
-
+    
     async saveProduct(require, response) {
         console.log('Cadastrando produto:', require.body);
         const schema = Yup.object().shape({
@@ -51,6 +46,12 @@ class ProductController {
     
     };
 
+    async listAllProducts(require, response) {
+        const todosOsProdutos = await Product.findAll({where: require.body});
+        console.log('Recuperando todos os produtos', todosOsProdutos);
+        return response.status(200).json(todosOsProdutos);
+    };
+
     async deleteProduct(require, response) {
         console.log('Excluindo produto:', require.body);
         const schema = Yup.object().shape({
@@ -64,7 +65,7 @@ class ProductController {
                 .findByPk(validatedProduct.productId);
             const deleteProduct = await product
                 .destroy(validatedProduct)
-            return response.status(200).json(deleteProduct);
+            return response.status(200).json(deleteProduct, {message: "Deletado com sucesso"});
         })
         .catch(async function(err) {
             return response.status(401).json({ message: err })

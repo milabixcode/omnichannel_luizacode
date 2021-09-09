@@ -25,6 +25,9 @@ class Client extends Model {
             tableName:"clients"
         });
         return this;
+    };
+    static associate(models){
+        this.belongsTo( models.Store, { foreignKey: 'adressId', as: 'adress'})
     }
 }
 

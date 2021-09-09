@@ -1,7 +1,9 @@
 import { Router } from 'express';
+
 import ClientController from './app/controller/ClientController';
 import ProductController from './app/controller/ProductController';
 import StoreController from './app/controller/StoreController';
+import AdressController from './app/controller/AdressController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -27,6 +29,12 @@ routes.post('/client', ClientController.saveClient);
 routes.put('/client', ClientController.updateClient);
 routes.get('/client',ClientController.listAllClients);
 routes.delete('/client', ClientController.deleteClient);
+
+routes.post('/adress', AdressController.saveAdress);
+routes.put('/adress', AdressController.updateAdress);
+routes.get('/adress', AdressController.listAllAdresses);
+routes.delete('/adress', AdressController.deleteAdress);
+
 
 
 routes.put('/lista-de-compra', (req, res) => {

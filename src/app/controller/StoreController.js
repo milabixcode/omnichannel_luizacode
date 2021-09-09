@@ -4,12 +4,7 @@ import { string } from 'yup/lib/locale';
 import Store from '../models/Store';
 
 class StoreController {
-    async listAllStores(require, response) {
-        const allStores = await Store.findAll();
-        console.log('Recuperando todas as lojas', allStores);
-        return response.status(200).json(allStores);
-    }
-
+    
     async saveStore(require, response) {
         console.log('Cadastrando loja:', require.body);
         const schema = Yup.object().shape({
@@ -43,7 +38,7 @@ class StoreController {
         .validate(require.body)
         .then(async function(validatedStore) {
             const store = await Store
-                .findByPk(validatedStore.storetId);
+                .findByPk(validatedStore.storeId);
             const updateStore = await store
                 .update(validatedStore)
             return response.status(200).json(updateStore);
@@ -52,6 +47,12 @@ class StoreController {
             return response.status(401).json({ message: err })
         });
     
+    };
+
+    async listAllStores(require, response) {
+        const allStores = await Store.findAll();
+        console.log('Recuperando todas as lojas', allStores);
+        return response.status(200).json(allStores);
     };
 
     async deleteStore(require, response) {
@@ -67,7 +68,7 @@ class StoreController {
                 .findByPk(validatedStore.storeId);
             const deleteStore = await store
                 .destroy(validatedStore)
-            return response.status(2000).json(deleteStore);
+            return response.status(2000).json(deleteStore, {message: "Deletado com sucesso"});
         })
         .catch(async function(err) {
             return response.status(401).json({ message: err })

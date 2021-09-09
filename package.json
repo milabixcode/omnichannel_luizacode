@@ -7,12 +7,15 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/server",
     "build": "sucrase ./src -d ./dist --transforms imports",
-    "start": "node dist/server"
+    "start": "node dist/server",
+    "swagger-autogen": "node ./swagger.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
+    "date-fns": "^2.23.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.7.1",
@@ -23,8 +26,9 @@
     "yup": "^0.32.9"
   },
   "devDependencies": {
-    "sucrase": "^3.20.1",
     "nodemon": "^2.0.12",
-    "sequelize-cli": "^6.2.0"
+    "sequelize-cli": "^6.2.0",
+    "sucrase": "^3.20.1",
+    "swagger-autogen": "^2.11.2"
   }
 }
