@@ -5,14 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "sucrase ./src -d ./build --transforms imports",
-    "dev": "npm rum build && nodemon build/server.js"
+    "dev": "nodemon src/server",
+    "build": "sucrase ./src -d ./dist --transforms imports",
+    "start": "node dist/server"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
     "pq": "0.0.3",

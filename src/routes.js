@@ -3,7 +3,11 @@ import ClientController from './app/controller/ClientController';
 import ProductController from './app/controller/ProductController';
 import StoreController from './app/controller/StoreController';
 
+import authMiddleware from './app/middlewares/auth';
+
 const routes = new Router();
+
+routes.use(authMiddleware);
 
 routes.get('/product', ProductController.listAllProducts);
 routes.post('/product', ProductController.saveProduct);
