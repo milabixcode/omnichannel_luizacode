@@ -27,6 +27,25 @@ class ClientController {
                 return response.status(400).json({ message: err });
             });
     };    
+
+    async updateClient(require, response) {
+        console.log('Atualizando cliente:', require.body);
+        const schema = Yup.object().shape({
+            clientId: Yup.number().required()
+        });
+    
+        return await schema
+        .validate(require.body)
+        .then(async function(validatedClient) {
+            const client = await Client.findByPk(validatedClient.clientId);
+            const updatedClient = await client.update(validatedClient);
+            return response.status(200).json(updatedClient);
+        })
+        .catch(async function(err) {
+            return response.status(400).json({ message: err })
+        });
+    
+    };
 }
 
 export default new ClientController();
