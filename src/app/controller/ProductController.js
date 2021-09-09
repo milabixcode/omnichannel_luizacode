@@ -63,7 +63,7 @@ class ProductController {
             const product = await Product
                 .findByPk(validatedProduct.productId);
             const deleteProduct = await product
-                .delete(validatedProduct)
+                .destroy(validatedProduct)
             return response.status(200).json(deleteProduct);
         })
         .catch(async function(err) {
