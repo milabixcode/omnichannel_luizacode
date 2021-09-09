@@ -5,6 +5,9 @@ import StoreController from './app/controller/StoreController';
 
 import authMiddleware from './app/middlewares/auth';
 
+import swaggerUI from 'swagger-ui-express';
+import swaggerDocument from '../swagger';
+
 const routes = new Router();
 
 //routes.use(authMiddleware);
@@ -40,7 +43,11 @@ routes.get('/pedido', (res,req) => {
     res.json({ message: 'Este é um endpoint que consulta todas as compras do cliente'})
 });
 
-// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup())
+
+
+routes.use('/swagger', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
+
+
 
 // app.get('/terms', (request, response) => {
 //     return response.json({ message: 'Termos de Serviço'});
