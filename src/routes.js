@@ -22,6 +22,7 @@ routes.delete('/store', StoreController.deleteStore);
 
 routes.post('/client', ClientController.saveClient);
 routes.put('/client', ClientController.updateClient);
+routes.get('/client',ClientController.listAllClients);
 
 routes.put('/lista-de-compra', (req, res) => {
     res.json({ message: 'Este é um endpoint que adiciona um produto na lista de compra do cliente'})

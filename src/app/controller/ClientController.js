@@ -46,6 +46,12 @@ class ClientController {
         });
     
     };
+    
+    async listAllClients(require, response) {
+        const todosClientes = await Client.findAll({where: require.body});
+        console.log('Listando todos os clientes', todosClientes);
+        return response.status(200).json(todosClientes);
+    }
 }
 
 export default new ClientController();
