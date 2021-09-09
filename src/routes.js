@@ -35,8 +35,6 @@ routes.put('/adress', AdressController.updateAdress);
 routes.get('/adress', AdressController.listAllAdresses);
 routes.delete('/adress', AdressController.deleteAdress);
 
-
-
 routes.put('/lista-de-compra', (req, res) => {
     res.json({ message: 'Este é um endpoint que adiciona um produto na lista de compra do cliente'})
 });
