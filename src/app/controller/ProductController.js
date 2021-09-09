@@ -4,7 +4,7 @@ import Product from '../models/Product';
 
 class ProductController {
     async listAllProducts(require, response) {
-        const todosOsProdutos = await Product.findAll();
+        const todosOsProdutos = await Product.findAll({where: require.body});
         console.log('Recuperando todos os produtos', todosOsProdutos);
         return response.status(200).json(todosOsProdutos);
     }
