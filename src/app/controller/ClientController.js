@@ -46,6 +46,23 @@ class ClientController {
         });
     
     };
+    async deleteClient(require, response) {
+        console.log('Excluindo cliente:', require.body);
+        const schema = Yup.object().shape({
+            clientId: Yup.number().required()
+        });
+
+        return await schema
+        .validate(require.body)
+        .then(async function(validatedClient){
+            const client = await Client.findByPk(validatedClient.clientId);
+            const deletedClient = await client.destroy(validatedClient);    
+            return response.status(200).json({message: "deletado com sucesso"});
+        })
+        .catch(async function(err) {
+            return response.status(400).json({ message: err })
+        });
+    };
 }
 
 export default new ClientController();
