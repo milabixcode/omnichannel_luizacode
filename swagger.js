@@ -43,142 +43,113 @@ module.exports = {
             409: { description: 'Cliente já cadastrado' },
           },
         },
+        put:{
+          tags: [
+            'Clients',
+          ],
+        }
       },
-    //   '/session': {
-    //     post: {
-    //       tags: [
-    //         'Login',
-    //       ],
-    //       parameters: [
-    //         {
-    //           in: 'body',
-    //           name: 'body',
-    //           description: 'Você deve passar o email e password no body',
-    //           required: true,
-    //           schema: { $ref: '#/definitions/LoginBody' },
-    //         },
-    //       ],
-    //       summary: 'Realiza o login da aplicação',
-    //       description: '',
-    //       operationId: 'login',
-    //       consumes: [
-    //         'application/json',
-    //       ],
-    //       produces: [
-    //         'application/json',
-    //       ],
-    //       responses: {
-    //         200: {
-    //           description: 'successful operation',
-    //           schema: {
-    //             type: 'array',
-    //             items: { $ref: '#/definitions/Login' },
-    //           },
-    //         },
-    //         401: { description: 'Usuário não autorizado' },
-    //       },
-    //     },
-    //   },
-    // },
-    // securityDefinitions: {
-    //   api_key: {
-    //     type: 'apiKey',
-    //     name: 'api_key',
-    //     in: 'header',
-    //   },
-    // },
-    // definitions: {
-    //   Clients: {
-    //     type: 'object',
-    //     required: [
-    //       'name',
-    //       'email',
-    //       'password',
+      '/product': {
+        get:{
+          tags: [
+            'Products',
+          ],
+          consumes: [
+            'application/json',
+          ],
+          produces: [
+            'application/json',
+          ],
+        },
+        post:{
+            tags: [
+            'Products',
+          ],
+          consumes: [
+            'application/json',
+          ],
+          produces: [
+            'application/json',
+          ],
+        },
+        put:{
+            tags: [
+            'Products',
+          ],
+          consumes: [
+            'application/json',
+          ],
+          produces: [
+            'application/json',
+          ],
+        },
+        delete:{
+            tags: [
+            'Products',
+          ],
+          consumes: [
+            'application/json',
+          ],
+          produces: [
+            'application/json',
+          ],
+        },
+      },
 
-    //       'firstName',
-    //       'lastName',
-    //       'cpf',
-    //       'cnpj',
-    //       'birthDate',
-    //       'email',
-    //       'password',
-    //       'phone',
-    //     ],
-    //     properties: {
-    //       id: {
-    //         type: 'integer',
-    //         format: 'integer',
-    //       },
-    //       name: { type: 'string' },
-    //       email: { type: 'string' },
-    //       password: { type: 'string' },
-    //     },
-    //     xml: { name: 'Usuario' },
-    //   },
-    //   Login: {
-    //     type: 'object',
-    //     required: [
-    //       'email',
-    //       'password',
-    //     ],
-    //     properties: {
-    //       user: {
-    //         type: 'object',
-    //         id: {
-    //           type: 'integr',
-    //           format: 'uuid',
-    //         },
-    //         name: { type: 'string' },
-    //         email: { type: 'string' },
-    //         password: { type: 'string' },
-    //       },
-    //       token: { type: 'bearear' },
-    //     },
-    //     xml: { name: 'Usuario' },
-    //   },
-    //   LoginBody: {
-    //     type: 'object',
-    //     required: [
-    //       'email',
-    //       'password',
-    //     ],
-    //     properties: {
-    //       email: { type: 'string' },
-    //       password: { type: 'string' },
-    //     },
-    //     xml: { name: 'Usuario' },
-    //   },
-    //   CreateUser: {
-    //     type: 'object',
-    //     required: [
-    //       'email',
-    //       'password',
-    //     ],
-    //     properties: {
-    //       id: {
-    //         type: 'integr',
-    //         format: 'uuid',
-    //       },
-    //       name: { type: 'string' },
-    //       email: { type: 'string' },
-    //       password: { type: 'string' },
-    //     },
-    //     xml: { name: 'Usuario' },
-    //   },
-    //   CreateUserBody: {
-    //     type: 'object',
-    //     required: [
-    //       'email',
-    //       'password',
-    //     ],
-    //     properties: {
-    //       name: { type: 'string' },
-    //       email: { type: 'string' },
-    //       password: { type: 'string' },
-    //     },
-    //     xml: { name: 'Usuario' },
-    //   },
-    // },
+      '/store':{
+        get:{
+          tags: [
+            'Stores',
+          ],
+          consumes: [
+            'application/json',
+          ],
+          produces: [
+            'application/json',
+          ],
+
+        },
+        post:{
+          tags: [
+            'Stores',
+          ],
+          consumes: [
+            'application/json',
+          ],
+          produces: [
+            'application/json',
+          ],
+
+        },
+        put:{
+          tags: [
+            'Stores',
+          ],
+          consumes: [
+            'application/json',
+          ],
+          produces: [
+            'application/json',
+          ],
+
+        },
+        delete:{
+          tags: [
+            'Stores',
+          ],
+          consumes: [
+            'application/json',
+          ],
+          produces: [
+            'application/json',
+          ],
+
+        },
+
+      },
+      
+    
+      
     externalDocs: {
       description: 'Acesse o repositorio',
       url: 'http://github.com',
