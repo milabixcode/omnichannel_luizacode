@@ -66,7 +66,7 @@ class StoreController {
             const store = await Store
                 .findByPk(validatedStore.storeId);
             const deleteStore = await store
-                .delete(validatedStore)
+                .destroy(validatedStore)
             return response.status(2000).json(deleteStore);
         })
         .catch(async function(err) {
