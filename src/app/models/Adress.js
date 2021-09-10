@@ -9,6 +9,7 @@ class Adress extends Model {
                 autoIncrement: true
             },
             adressName: Sequelize.STRING,
+            addressStreet: Sequelize.STRING,
             adressNumber: Sequelize.INTEGER,
             adressCEP: Sequelize.STRING,
             adressCity: Sequelize.STRING,
@@ -19,7 +20,7 @@ class Adress extends Model {
         {
             sequelize,
             underscored:false,
-            tableName:"adresses"
+            tableName:"tb_adresses"
 
         });
         return this;
