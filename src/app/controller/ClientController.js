@@ -7,8 +7,7 @@ class ClientController {
     async saveClient(require, response) {
         console.log('Cadastrando cliente:', require.body);
         const schema = Yup.object().shape({
-
-            addressID: Yup.number().required(),
+            adressId: Yup.number().required(),
             firstName: Yup.string().required(),
             lastName: Yup.string().required(),
             cpf: Yup.string(),
