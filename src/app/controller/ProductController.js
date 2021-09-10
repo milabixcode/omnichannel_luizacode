@@ -9,7 +9,6 @@ class ProductController {
         const schema = Yup.object().shape({
             productName: Yup.string().required(),
             categoryName: Yup.string().required(),
-            quantity: Yup.number().required().min(1),
             imageUrl: Yup.string().url().required()
         });    
 

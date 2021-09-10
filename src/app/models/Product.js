@@ -10,7 +10,6 @@ class Product extends Model {
             },
             productName: Sequelize.STRING,
             categoryName: Sequelize.STRING,
-            quantity: Sequelize.INTEGER,
             imageUrl: Sequelize.STRING,
             createdAt: Sequelize.DATE,
             updatedAt: Sequelize.DATE,
@@ -18,7 +17,7 @@ class Product extends Model {
         {
             sequelize,
             underscored:false,
-            tableName:"products"
+            tableName:"tb_products"
 
         });
         return this;

@@ -5,9 +5,11 @@ import Product from '../app/models/Product';
 import Client from '../app/models/Client';
 import Store from '../app/models/Store';
 import Adress from '../app/models/Adress';
+import Inventory from '../app/models/Inventory';
+import Order from '../app/models/Order';
+import Item from '../app/models/Item';
 
-
-const models = [ Product, Client, Store, Adress ];
+const models = [ Product, Client, Store, Adress, Inventory, Order, Item];
 
 class Database{
     constructor(){

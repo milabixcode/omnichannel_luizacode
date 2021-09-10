@@ -1,28 +1,31 @@
 import Sequelize, { Model } from 'sequelize';
 
-class Store extends Model {
+class Order extends Model {
     static init(sequelize) {
         super.init({
-            storeId: {
+            orderId: {
                 type: Sequelize.INTEGER,
                 primaryKey: true,
                 autoIncrement: true
             },
-            storeName: Sequelize.STRING,
+            statusDescription: Sequelize.STRING,
+            paymentType: Sequelize.STRING,
+            valueFreight: Sequelize.INTEGER,
             createdAt: Sequelize.DATE,
             updatedAt: Sequelize.DATE
         },
         {
             sequelize,
             underscored:false,
-            tableName:"tb_store"
+            tableName:"tb_orders"
 
         });
         return this;
     }
     static associate(models){
-        this.belongsTo( models.Adress, { foreignKey: 'adressId', as: 'Adress'})
+        this.belongsTo( models.Client, { foreignKey: 'clientId', as: 'client'})
+        this.belongsTo( models.Adress, { foreignKey: 'adressId', as: 'adress'})
     }
 };
 
-export default Store
+export default Order
