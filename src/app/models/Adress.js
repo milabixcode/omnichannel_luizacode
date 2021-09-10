@@ -11,7 +11,7 @@ class Adress extends Model {
             adressName: Sequelize.STRING,
             addressStreet: Sequelize.STRING,
             adressNumber: Sequelize.INTEGER,
-            adressCep: Sequelize.STRING,
+            adressCEP: Sequelize.STRING,
             adressCity: Sequelize.STRING,
             adressState: Sequelize.STRING,
             createdAt: Sequelize.DATE,

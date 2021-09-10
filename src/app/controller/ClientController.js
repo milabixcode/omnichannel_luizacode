@@ -20,9 +20,9 @@ class ClientController {
             option: Yup.string().required()
         })
         
-        if(!(await schema.isValid(req.body))){
-            return res.status(401).json({ message: 'Ooops dados inválidos' })
-          }
+        // if(!(await schema.isValid(req.body))){
+        //     return res.status(401).json({ message: 'Ooops dados inválidos' })
+        //   }
         
         return await schema
             .validate(require.body)

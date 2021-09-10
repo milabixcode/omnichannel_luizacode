@@ -20,6 +20,7 @@ class StoreController {
         return await schema
             .validate(require.body)
             .then(async function (validatedStore) {
+                const savedStore = await Store.create(validatedStore);
                 console.log('Loja validada')
                 const savedAdress = await Adress.create(require.body.adress);
                 console.log('Endereço salvo', savedAdress)
@@ -30,9 +31,9 @@ class StoreController {
                 }
                 console.log('Salvando loja', store)
 
-                const savedStore = await Store.create(store);
-                console.log('Loja salva', savedStore)
-                return response.status(201).json(savedStore);
+                // const savedStore = await Store.create(store);
+                // console.log('Loja salva', savedStore)
+                // return response.status(201).json(savedStore);
             })
             .catch(async function (err) {
                 return response.status(401).json({ message: err })
