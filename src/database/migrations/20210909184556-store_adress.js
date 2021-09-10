@@ -7,7 +7,7 @@ module.exports = {
         references: { model: 'adresses', key: 'adressId'},
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
-        allowNull: false,
+        allowNull: true,
       }
     )
   },  

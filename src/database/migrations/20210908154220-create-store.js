@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable('stores', {
+    return queryInterface.createTable('tb_stores', {
       storeId: {
         type: Sequelize.INTEGER,
         allowNull: false,

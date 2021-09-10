@@ -25,6 +25,9 @@ class Adress extends Model {
         });
         return this;
     }
+    static associate(models){
+        this.hasOne( models.Store, { foreignKey: 'storeID'})
+    }
 }
 
 export default Adress;

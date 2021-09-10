@@ -3,7 +3,7 @@ import Sequelize, { Model } from 'sequelize';
 class Store extends Model {
     static init(sequelize) {
         super.init({
-            storeId: {
+            storeID: {
                 type: Sequelize.INTEGER,
                 primaryKey: true,
                 autoIncrement: true
@@ -15,13 +15,13 @@ class Store extends Model {
         {
             sequelize,
             underscored:false,
-            tableName:"tb_store"
+            tableName:"tb_stores"
 
         });
         return this;
     }
     static associate(models){
-        this.belongsTo( models.Adress, { foreignKey: 'adressId', as: 'Adress'})
+        this.belongsTo( models.Adress, { foreignKey: 'adressId', as: 'addressID'})
     }
 };
 
