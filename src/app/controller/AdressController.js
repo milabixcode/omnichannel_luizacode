@@ -67,7 +67,7 @@ class AdressController {
                 .findByPk(validatedAdress.adressId);
             const deleteAdress = await adress
                 .destroy(validatedAdress)
-            return response.status(2000).json(deleteAdress, {message: "Deletado com sucesso"});
+            return response.status(200).json({message: "Deletado com sucesso"});
         })
         .catch(async function(err) {
             return response.status(401).json({ message: err })
