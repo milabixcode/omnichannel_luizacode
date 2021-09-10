@@ -7,6 +7,7 @@ class ClientController {
     async saveClient(require, response) {
         console.log('Cadastrando cliente:', require.body);
         const schema = Yup.object().shape({
+<<<<<<< Updated upstream
             addressID: Yup.number().required(),
             firstName: Yup.string().required(),
             lastName: Yup.string().required(),
@@ -18,6 +19,22 @@ class ClientController {
             phone: Yup.string(),
             option: Yup.string().required()
         })
+=======
+            clientFirstName: Yup.string().required(),
+            clientLastName: Yup.string().required(),
+            clientCpf: Yup.string(),
+            clientCnpj: Yup.string(),
+            clientBirthDate: Yup.date(),
+            clientEmail: Yup.string().required(),
+            clientPassword: Yup.string().required(),
+            clientPhone: Yup.string(),
+            clientPassword: Yup.string().required().min(6)
+        });
+        
+        if(!(await schema.isValid(req.body))){
+            return res.status(401).json({ message: 'Ooops dados inválidos' })
+          }
+>>>>>>> Stashed changes
         
         return await schema
             .validate(require.body)

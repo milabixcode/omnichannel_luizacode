@@ -1,4 +1,5 @@
 import Sequelize, { Model } from 'sequelize';
+//import bcrypt from 'bcryptjs';
 
 
 class Client extends Model {
@@ -27,11 +28,24 @@ class Client extends Model {
             underscored:false,
             tableName:"tb_clients"
         });
+        // this.addHook('beforeSave', async client => {
+        //     if(client.password){
+        //       client.password_hash = await bcrypt.hash(client.password, 10)
+        //     }
+        // })
         return this;
-    };
-    static associate(models){
-        this.belongsTo( models.Adress, { foreignKey: 'addressID', as: 'address'})
     }
+    static associate(models){
+<<<<<<< Updated upstream
+        this.belongsTo( models.Adress, { foreignKey: 'addressID', as: 'address'})
+=======
+        this.belongsTo( models.Adress, { foreignKey: 'adressId', as: 'adresses'})
+>>>>>>> Stashed changes
+    }
+
+    checkPassword(password){
+        return bcrypt.compare(password, this.password_hash)
+      }
 }
 
 export default Client

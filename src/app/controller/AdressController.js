@@ -9,8 +9,8 @@ class AdressController {
         console.log('Cadastrando endereço:', require.body);
         const schema = Yup.object().shape({
             adressName: Yup.string().required(),
-            adressNumber: Yup.integer().required(),
-            adressCEP: Yup.string().required(),
+            adressNumber: Yup.number().required(),
+            adressCep: Yup.string().required(),
             adressCity: Yup.string().required(),
             adressState: Yup.string().required()
         });    

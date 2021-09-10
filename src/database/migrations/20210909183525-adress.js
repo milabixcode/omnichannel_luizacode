@@ -17,7 +17,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      adressCEP: {
+      adressCep: {
         type: Sequelize.STRING,
         allowNull: false
       },

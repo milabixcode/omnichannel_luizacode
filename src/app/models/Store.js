@@ -21,7 +21,7 @@ class Store extends Model {
         return this;
     }
     static associate(models){
-        this.belongsTo( models.Adress, { foreignKey: 'adressId', as: 'Adress'})
+        this.belongsTo( models.Adress, { foreignKey: 'adressId', as: 'Adresses'})
     }
 };
 

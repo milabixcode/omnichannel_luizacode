@@ -2,24 +2,38 @@ import { response } from 'express';
 import * as Yup from 'yup';
 import { string } from 'yup/lib/locale';
 import Store from '../models/Store';
+import Adress from '../models/Adress';
 
 class StoreController {
     
     async saveStore(require, response) {
-        console.log('Cadastrando loja:', require.body);
+        console.log('Iniciando o processo de cadastro:', require.body);
         const schema = Yup.object().shape({
             storeName: Yup.string().required(),
-            adressName: Yup.string().required(),
-            adressNumber: Yup.integer().required(),
-            adressCEP: Yup.string().required(),
-            adressCity: Yup.string().required(),
-            adressState: Yup.string().required()
+            // adress:{
+            //     name: Yup.string().required(),
+            //     number: Yup.number().required(),
+            //     cep: Yup.string().required(),
+            //     city: Yup.string().required(),
+            //     state: Yup.string().required()
+            // }
         });    
 
         return await schema
             .validate(require.body)
             .then(async function (validatedStore) {
-                const savedStore = await Store.create(validatedStore);
+                console.log('Loja validada')
+                const savedAdress = await Adress.create(require.body.adress);
+                console.log('Endereço salvo', savedAdress)
+                const store = {
+                    adresses: savedAdress.dataValues.adressId,
+                    storeName: require.body.storeName
+
+                }
+                console.log('Salvando loja', store)
+
+                const savedStore = await Store.create(store);
+                console.log('Loja salva', savedStore)
                 return response.status(201).json(savedStore);
             })
             .catch(async function (err) {
