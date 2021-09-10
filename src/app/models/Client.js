@@ -36,11 +36,8 @@ class Client extends Model {
         return this;
     }
     static associate(models){
-<<<<<<< Updated upstream
+
         this.belongsTo( models.Adress, { foreignKey: 'addressID', as: 'address'})
-=======
-        this.belongsTo( models.Adress, { foreignKey: 'adressId', as: 'adresses'})
->>>>>>> Stashed changes
     }
 
     checkPassword(password){

@@ -10,13 +10,11 @@ class StoreController {
         console.log('Iniciando o processo de cadastro:', require.body);
         const schema = Yup.object().shape({
             storeName: Yup.string().required(),
-            // adress:{
-            //     name: Yup.string().required(),
-            //     number: Yup.number().required(),
-            //     cep: Yup.string().required(),
-            //     city: Yup.string().required(),
-            //     state: Yup.string().required()
-            // }
+            adressName: Yup.string().required(),
+            adressNumber: Yup.integer().required(),
+            adressCEP: Yup.string().required(),
+            adressCity: Yup.string().required(),
+            adressState: Yup.string().required()
         });    
 
         return await schema

@@ -9,14 +9,8 @@ class AdressController {
         console.log('Cadastrando endereço:', require.body);
         const schema = Yup.object().shape({
             adressName: Yup.string().required(),
-<<<<<<< HEAD
             adressNumber: Yup.number().required(),
             adressCep: Yup.string().required(),
-=======
-            addressStreet: Yup.string().required(),
-            adressNumber: Yup.number().required(),
-            adressCEP: Yup.string().required(),
->>>>>>> b23d722ac1566da6459b20f33331a43c2ad653c5
             adressCity: Yup.string().required(),
             adressState: Yup.string().required()
         });    
@@ -30,7 +24,6 @@ class AdressController {
             .catch(async function (err) {
                 return response.status(401).json({ message: err })
             });
-
     };
 
     async updateAdress(require, response) {
