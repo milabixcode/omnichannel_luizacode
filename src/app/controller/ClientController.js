@@ -7,15 +7,17 @@ class ClientController {
     async saveClient(require, response) {
         console.log('Cadastrando cliente:', require.body);
         const schema = Yup.object().shape({
-            clientFirstName: Yup.string().required(),
-            clientLastName: Yup.string().required(),
-            clientCpf: Yup.string(),
-            clientCnpj: Yup.string(),
-            clientBirthDate: Yup.date(),
-            clientEmail: Yup.string().required(),
-            clientPassword: Yup.string().required(),
-            clientPhone: Yup.string()
-        });    
+            addressID: Yup.number().required(),
+            firstName: Yup.string().required(),
+            lastName: Yup.string().required(),
+            cpf: Yup.string(),
+            cnpj: Yup.string(),
+            birthDate: Yup.date(),
+            email: Yup.string().required(),
+            password: Yup.string().required(),
+            phone: Yup.string(),
+            option: Yup.string().required()
+        })
         
         return await schema
             .validate(require.body)
@@ -63,8 +65,9 @@ class ClientController {
         .validate(require.body)
         .then(async function(validatedClient){
             const client = await Client.findByPk(validatedClient.clientId);
-            const deleteClient = await client.destroy(validatedClient);    
-            return response.status(200).json(deleteClient, {message: "Deletado com sucesso"});
+            const deletedClient = await client.destroy(validatedClient);    
+            return response.status(200).json({ message: "Deletado com sucesso"}, {deletedClient: deletedClient});
+
         })
         .catch(async function(err) {
             return response.status(400).json({ message: err })
