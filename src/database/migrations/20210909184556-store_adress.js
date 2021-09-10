@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.addColumn('stores', 'adresses', {
+    return queryInterface.addColumn('tb_stores', 'adresses', {
         type: Sequelize.INTEGER,
         references: { model: 'adresses', key: 'adressId'},
         onUpdate: 'CASCADE',

@@ -11,7 +11,7 @@ module.exports = {
       },
       store: {
         type: Sequelize.INTEGER,
-        references: { model: 'tb_stores', key: 'storeID'},
+        references: { model: 'tb_stores', key: 'storeId'},
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
         allowNull: false,
