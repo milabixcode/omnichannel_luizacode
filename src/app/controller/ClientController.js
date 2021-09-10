@@ -83,7 +83,7 @@ class ClientController {
         .then(async function(validatedClient){
             const client = await Client.findByPk(validatedClient.clientId);
             const deletedClient = await client.destroy(validatedClient);    
-            return response.status(200).json({ message: "Deletado com sucesso"}, {deletedClient: deletedClient});
+            return response.status(200).json({ message: "Deletado com sucesso"});
 
         })
         .catch(async function(err) {
