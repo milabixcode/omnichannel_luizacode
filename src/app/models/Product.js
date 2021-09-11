@@ -1,5 +1,6 @@
 import Sequelize, { Model } from 'sequelize';
 import Inventory from './Inventory';
+import Item from './Item';
 
 class Product extends Model {
     static init(sequelize) {
@@ -25,6 +26,7 @@ class Product extends Model {
     }
     static associate(models){
         this.belongsToMany( models.Store, {through: Inventory, foreignKey: 'product'})
+        this.belongsToMany(models.Order, {through:Item, foreignKey:'product'})
     }
 }
 

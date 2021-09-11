@@ -36,16 +36,14 @@ routes.put('/adress', AdressController.updateAdress);
 routes.get('/adress', AdressController.listAllAdresses);
 routes.delete('/adress', AdressController.deleteAdress);
 
-routes.put('/lista-de-compra', (req, res) => {
-    res.json({ message: 'Este é um endpoint que adiciona um produto na lista de compra do cliente'})
-});
+routes.put('/order/item', OrderController.addItemToOrder);
 
 routes.delete('/lista-de-compra', (req, res) => {
     res.json({ message: 'Este é um endpoint que remove um produto da lista de compra do cliente'})
 });
 
-routes.post('/checkout', OrderController.saveOrder);
-routes.put('/checkout', OrderController.updateOrder);
+// routes.post('/checkout', OrderController.saveOrder);
+// routes.put('/checkout', OrderController.updateOrder);
 //Este é um endpoint que finaliza a compra
 
 

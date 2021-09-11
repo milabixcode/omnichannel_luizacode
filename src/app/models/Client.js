@@ -10,7 +10,6 @@ class Client extends Model {
                 primaryKey: true,
                 autoIncrement: true
             },
-            addressId: Sequelize.INTEGER,
             firstName: Sequelize.STRING,
             lastName: Sequelize.STRING,
             cpf: Sequelize.STRING,
@@ -36,7 +35,6 @@ class Client extends Model {
         return this;
     }
     static associate(models){
-
         this.belongsTo( models.Adress, { foreignKey: 'adressId', as: 'address'})
     }
 

@@ -1,6 +1,8 @@
 import { response } from 'express';
 import * as Yup from 'yup';
+import Client from '../models/Client';
 import Order from '../models/Order';
+import Product from '../models/Product';
 
 
 class OrderController {    
@@ -23,18 +25,89 @@ class OrderController {
             .catch(async function (err) {
                 return response.status(400).json({ message: err });
             });
-    };    
+    };
+    
+    async addItemToOrder(require, response) {
+        const schema = Yup.object().shape({
+            client: Yup.number().required(),
+	        product: Yup.number().required(),
+            quantity: Yup.string().required(),
+        })
+
+        const createdOrder = await schema.validate(require.body)
+        .then(async function (validateItem) {
+            const statusAberto = "ABERTO";
+            console.log("Buscando pedido");
+            
+            const order = await Order.findOne({where: {
+                client: validateItem.client,
+                // statusDescription: statusAberto
+            }});
+            console.log("Pedido encontrado: ", order)
+            
+            if (order === null) {
+                console.log("Pedido inexistente, buscando cliente para criacao de pedido")
+                return Client.findByPk(validateItem.client)
+                .then(async function (client) {
+                    console.log("Buscando produto para inserir no pedido")
+                    return await Product.findByPk(validateItem.product)
+                    .then(async function (product) {
+                        console.log("Criando pedido")
+                        return await Order.create({
+                            valueFreight: 1150,
+                            statusDescription: statusAberto
+                        }).then(async function (order) {
+                            order.setClient(client)
+                            order.setAdress(await client.getAddress())
+                            return order.addProduct(product, {through: {
+                                value: validateItem.value,
+                                quantity: validateItem.quantity
+                            }})
+                            // decrementar a quantidade do inventario de quantidade
+                        }).catch((err) => {
+                            console.log(err)
+                        })
+                    }).catch((err) => {
+                        console.log(err)
+                    })
+                }).catch((err) => {
+                    console.log(err)
+                })
+                
+            } else {
+                return await Product.findByPk(validateItem.product)
+                .then(async function (product) {
+                    return order.addProduct(product, {through: {
+                        value: validateItem.value,
+                        quantity: validateItem.quantity
+                    // decrementar a quantidade do inventario de quantidade
+
+                    }}) 
+                })
+            }
+
+            
+        })
+
+        return response.status(200).json(createdOrder)
+    }
 
     async updateOrder(require, response) {
         console.log('Atualizando pedido:', require.body);
-        const schema = Yup.object().shape({
-            orderId: Yup.number().required()
-        });
+        // const schema = Yup.object().shape({
+        //     orderId: Yup.number().required()
+        // });
     
         return await schema
         .validate(require.body)
         .then(async function(validatedOrder) {
             const order = await Order.findByPk(validatedOrder.orderId);
+
+            if(order === null) {
+                
+            } else {
+
+            }
             const updatedOrder = await order.update(validatedOrder);
             return response.status(200).json(updatedOrder);
         })
