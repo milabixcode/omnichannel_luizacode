@@ -13,14 +13,21 @@ class OrderController {
             paymentType: Yup.string().required(),
 	        statusDescription: Yup.string().required()
         })
-                
+        console.log("Validando pedido");        
         return await schema
             .validate(require.body)
             .then(async function (validatedOrder) {
+                console.log("Validado com sucesso");
+
+                console.log("Salvando pedido no banco");
                 const savedOrder = await Order.create(validatedOrder);
+                console.log("Salvo com sucesso");
+
+                console.log("Retornando pedido salvo");
                 return response.status(201).json(savedOrder);
             })
             .catch(async function (err) {
+                console.log("Tratamento de exceção. Algo deu errado!");
                 return response.status(400).json({ message: err });
             });
     };    
@@ -34,11 +41,19 @@ class OrderController {
         return await schema
         .validate(require.body)
         .then(async function(validatedOrder) {
+            
+            console.log("Validando pedido");
             const order = await Order.findByPk(validatedOrder.orderId);
+            console.log("Validade com sucesso");
+            
             const updatedOrder = await order.update(validatedOrder);
+            console.log("Pedido atualizado");
+            
+            console.log("Salvando alteração no banco");
             return response.status(200).json(updatedOrder);
         })
         .catch(async function(err) {
+            console.log("Tratamento de exceção. Algo deu errado!");
             return response.status(400).json({ message: err })
         });
     

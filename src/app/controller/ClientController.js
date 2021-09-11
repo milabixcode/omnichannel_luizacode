@@ -18,17 +18,24 @@ class ClientController {
             option: Yup.string().required()
         })
         
-        // if(!(await schema.isValid(req.body))){
-        //     return res.status(401).json({ message: 'Ooops dados inválidos' })
-        //   }
-        
+        console.log("Validando cliente");
         return await schema
             .validate(require.body)
             .then(async function (validatedClient) {
+                    
+                    console.log("Validado com sucesso");
+
+                    console.log("Salvando cliente no banco");
                     const savedClient = await Client.create(validatedClient);                                          
-                    return response.status(201).json(savedClient);                                              
+                    console.log("Salvo com sucesso");
+                    
+                    console.log("Retornando cliente salvo");
+                    return response.status(201).json(savedClient);                                   
+                                 
             })
             .catch(async function (err) {
+                console.log("Tratamento de exceção. Algo deu errado!");
+                
                 return response.status(400).json({ message: err });
             });
     };    
@@ -37,16 +44,24 @@ class ClientController {
         console.log('Atualizando cliente:', require.body);
         const schema = Yup.object().shape({
             clientId: Yup.number().required()
-        });
-    
+        });       
+        
         return await schema
         .validate(require.body)
         .then(async function(validatedClient) {
+            
+            console.log("Validando cliente");
             const client = await Client.findByPk(validatedClient.clientId);
+            console.log("Validado com sucesso");
+            
             const updatedClient = await client.update(validatedClient);
+            console.log("Cliente alterado")
+
+            console.log("Salvando alteração no banco");
             return response.status(200).json(updatedClient);
         })
         .catch(async function(err) {
+            console.log("Tratamento de exceção. Algo deu errado!");
             return response.status(400).json({ message: err })
         });
     
@@ -67,12 +82,17 @@ class ClientController {
         return await schema
         .validate(require.body)
         .then(async function(validatedClient){
+            
+            console.log("Validando cliente a ser excluído");
             const client = await Client.findByPk(validatedClient.clientId);
             const deletedClient = await client.destroy(validatedClient);    
+
+            console.log("Cliente excluído com sucesso");
             return response.status(200).json({ message: "Deletado com sucesso"});
 
         })
         .catch(async function(err) {
+            console.log("Tratamento de exceção. Algo deu errado!");
             return response.status(400).json({ message: err })
         });
     };
