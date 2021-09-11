@@ -85,6 +85,12 @@ class OrderController {
                         value: validateItem.value,
                         quantity: validateItem.quantity
                     // decrementar a quantidade do inventario de quantidade
+
+                    //se tiver mais de uma loja associada ao produto qual vai ser a 
+                    //estrategia de decremento da quantidade doo produto no estoque.
+
+                    //falta o endpoint que remove o item
+                    //endpoint de finalizar pedido está pronto
                         
                     }})
                     return order 
