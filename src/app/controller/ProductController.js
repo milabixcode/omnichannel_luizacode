@@ -1,6 +1,7 @@
 import { response } from 'express';
 import * as Yup from 'yup';
 import Product from '../models/Product';
+import Store from '../models/Store';
 
 class ProductController {
     
@@ -9,13 +10,23 @@ class ProductController {
         const schema = Yup.object().shape({
             productName: Yup.string().required(),
             categoryName: Yup.string().required(),
-            imageUrl: Yup.string().url().required()
+            imageUrl: Yup.string().url().required(),
+            store: Yup.number().required(),
+            quantity: Yup.number().required()
         });    
 
         return await schema
             .validate(require.body)
             .then(async function (validatedProduct) {
-                const savedProduct = await Product.create(validatedProduct);
+                const product = {
+                    productName: validatedProduct.productName,
+                    categoryName: validatedProduct.categoryName,
+                    imageUrl: validatedProduct.imageUrl,
+                }
+                    const savedProduct = await Product.create(product)
+                    const store = await Store.findByPk(validatedProduct.store)
+                    savedProduct.addStore(store, { through: { quantity: validatedProduct.quantity }})
+               
                 return response.status(201).json(savedProduct);
             })
             .catch(async function (err) {

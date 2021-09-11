@@ -1,4 +1,5 @@
 import Sequelize, { Model } from 'sequelize';
+import Inventory from './Inventory';
 
 class Product extends Model {
     static init(sequelize) {
@@ -22,6 +23,10 @@ class Product extends Model {
         });
         return this;
     }
+    static associate(models){
+        this.belongsToMany( models.Store, {through: Inventory, foreignKey: 'product'})
+    }
 }
+
 
 export default Product
