@@ -20,10 +20,6 @@ class Inventory extends Model {
         });
         return this;
     }
-    static associate(models){
-        this.belongsTo( models.Store, { foreignKey: 'storeId', as: 'store'})
-        this.belongsTo( models.Product, { foreignKey: 'productId', as: 'product'})
-    }
 };
 
 export default Inventory

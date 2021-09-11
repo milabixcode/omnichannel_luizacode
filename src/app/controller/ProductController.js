@@ -1,6 +1,7 @@
 import { response } from 'express';
 import * as Yup from 'yup';
 import Product from '../models/Product';
+import Store from '../models/Store';
 
 class ProductController {
     
@@ -9,7 +10,9 @@ class ProductController {
         const schema = Yup.object().shape({
             productName: Yup.string().required(),
             categoryName: Yup.string().required(),
-            imageUrl: Yup.string().url().required()
+            imageUrl: Yup.string().url().required(),
+            store: Yup.number().required(),
+            quantity: Yup.number().required()
         });    
 
         console.log("Validando produto");
@@ -19,9 +22,15 @@ class ProductController {
                 console.log("Validado com sucesso");
                 
                 console.log("Salvando produto no banco");
-                const savedProduct = await Product.create(validatedProduct);
+                const product = {
+                    productName: validatedProduct.productName,
+                    categoryName: validatedProduct.categoryName,
+                    imageUrl: validatedProduct.imageUrl,
+                }
+                const savedProduct = await Product.create(product)
+                const store = await Store.findByPk(validatedProduct.store)
+                savedProduct.addStore(store, { through: { quantity: validatedProduct.quantity }})
                 console.log("Salvo com sucesso");
-
 
                 console.log("Retornando o produto salvo");
                 return response.status(201).json(savedProduct);

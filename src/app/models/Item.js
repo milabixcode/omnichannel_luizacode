@@ -21,10 +21,6 @@ class Item extends Model {
         });
         return this;
     }
-    static associate(models){
-        this.belongsTo( models.Order, { foreignKey: 'orderId', as: 'order'})
-        this.belongsTo( models.Product, { foreignKey: 'productId', as: 'product'})
-    }
 };
 
 export default Item
