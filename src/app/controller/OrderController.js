@@ -103,6 +103,58 @@ class OrderController {
         return response.status(200).json(createdOrder)
     }
 
+    async deleteItemFromOrder(require, response) {
+        console.log('Iniciando a remoção do item do pedido')
+
+        const schema = Yup.object().shape({
+            orderId: Yup.number().required(),
+            orderProductId: Yup.number().required()
+        })
+
+        return await schema
+        .validate(require.body)
+        .then(async function(validatedRequest){
+            const order = await Order.findByPk(validatedRequest.orderId);
+            console.log(`Resultado da busca do Pedido: , ${order}`)
+            if(order){
+                console.log('Pedido encontrado')
+                
+                const itemArray = await order.getItems({
+                    where: {
+                        product: validatedRequest.orderProductId
+                    }
+                })
+
+                if(itemArray.length > 0) {
+                    const item = itemArray.pop()
+                    console.log('Item encontrado', item)
+                    await item.decrement('quantity')
+                    await item.reload()
+                    //incrementar no inventario
+
+                    if(item.quantity <= 0) {
+                        await item.destroy()
+                        await order.reload()
+                    }
+
+                    const orderItems = await order.getItems()
+                    console.log('Itens atualizados no Pedido', orderItems)
+                    if(orderItems.length == 0) {
+                        await order.destroy()
+                    }                    
+                }
+               
+            } else {
+                return response.status(401).json({ message: `Pedido ${validatedRequest.orderId} não encontrado`})
+
+            }
+            return response.status(200).json()
+            
+        }).catch((err) => {
+            return response.status(401).json(err)
+        })
+    }
+
     async updateOrder(require, response) {
         console.log('Atualizando pedido:', require.body);
         // const schema = Yup.object().shape({

@@ -29,6 +29,7 @@ class Order extends Model {
         this.belongsTo( models.Client, { foreignKey: 'client'})
         this.belongsTo( models.Adress, { foreignKey: 'adress'})
         this.belongsToMany(models.Product, {through:Item, foreignKey:'order'})
+        this.hasMany(Item, {foreignKey: 'order'})
     }
 };
 

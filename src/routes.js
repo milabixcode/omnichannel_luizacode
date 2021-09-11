@@ -37,6 +37,7 @@ routes.get('/adress', AdressController.listAllAdresses);
 routes.delete('/adress', AdressController.deleteAdress);
 
 routes.put('/order/item', OrderController.addItemToOrder);
+routes.delete('/order/item', OrderController.deleteItemFromOrder);
 
 routes.delete('/lista-de-compra', (req, res) => {
     res.json({ message: 'Este é um endpoint que remove um produto da lista de compra do cliente'})
