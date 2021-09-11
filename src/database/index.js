@@ -9,6 +9,8 @@ import Inventory from '../app/models/Inventory';
 import Order from '../app/models/Order';
 import Item from '../app/models/Item';
 
+import cls from 'cls-hooked';
+
 const models = [ Product, Client, Store, Adress, Inventory, Order, Item];
 
 class Database{
@@ -17,6 +19,8 @@ class Database{
 
     }
     init(){
+        this.namespace = cls.createNamespace('nans-omni');
+        Sequelize.useCLS(this.namespace);
         this.connection = new Sequelize(databaseConfig);
 
         models

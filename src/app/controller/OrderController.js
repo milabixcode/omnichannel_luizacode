@@ -32,6 +32,7 @@ class OrderController {
             client: Yup.number().required(),
 	        product: Yup.number().required(),
             quantity: Yup.string().required(),
+            value: Yup.number().required()
         })
 
         const createdOrder = await schema.validate(require.body)
@@ -41,28 +42,31 @@ class OrderController {
             
             const order = await Order.findOne({where: {
                 client: validateItem.client,
-                // statusDescription: statusAberto
+                statusDescription: statusAberto
             }});
-            console.log("Pedido encontrado: ", order)
-            
+                        
             if (order === null) {
-                console.log("Pedido inexistente, buscando cliente para criacao de pedido")
+                console.log("Pedido inexistente, buscando cliente para criação de pedido")
                 return Client.findByPk(validateItem.client)
                 .then(async function (client) {
+
                     console.log("Buscando produto para inserir no pedido")
                     return await Product.findByPk(validateItem.product)
                     .then(async function (product) {
+
                         console.log("Criando pedido")
                         return await Order.create({
                             valueFreight: 1150,
                             statusDescription: statusAberto
                         }).then(async function (order) {
+
                             order.setClient(client)
                             order.setAdress(await client.getAddress())
-                            return order.addProduct(product, {through: {
+                            order.addProduct(product, {through: {
                                 value: validateItem.value,
                                 quantity: validateItem.quantity
                             }})
+                            return order
                             // decrementar a quantidade do inventario de quantidade
                         }).catch((err) => {
                             console.log(err)
@@ -77,12 +81,13 @@ class OrderController {
             } else {
                 return await Product.findByPk(validateItem.product)
                 .then(async function (product) {
-                    return order.addProduct(product, {through: {
+                    order.addProduct(product, {through: {
                         value: validateItem.value,
                         quantity: validateItem.quantity
                     // decrementar a quantidade do inventario de quantidade
-
-                    }}) 
+                        
+                    }})
+                    return order 
                 })
             }
 
