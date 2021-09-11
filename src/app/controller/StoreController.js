@@ -20,6 +20,7 @@ class StoreController {
         // }
         );    
 
+        console.log("Validando cadastro");
         return await schema
             .validate(require.body)
             .then(async function (validatedStore) {
@@ -42,9 +43,13 @@ class StoreController {
                 ).catch((ex) => {
                     console.log(ex)
                 });
+
+                console.log("Retornando loja salva");
                 return response.status(201).json(savedStore);
             })
             .catch(async function (err) {
+                console.log("Tratamento de exceção. Algo deu errado!");
+               
                 return response.status(401).json({ message: err })
             });
 
@@ -59,6 +64,8 @@ class StoreController {
         return await schema
         .validate(require.body)
         .then(async function(validatedStore) {
+            
+            console.log("Validando loja")
             const contractStore = {
                 addressID: validatedStore.adress,
                 storeName: validatedStore.storeName
@@ -66,6 +73,8 @@ class StoreController {
             const store = await Store
                 .findByPk(validatedStore.storeId)
                 .then((updateStore) => {
+                    
+                    console.log("Validado com sucesso");
                     return updateStore
                     .update(contractStore)
                     .then((storeRecord) => {
@@ -73,13 +82,15 @@ class StoreController {
                         .then((adressRecord) => {
                             return adressRecord.update(validatedStore.adress)
                         })
+                        console.log("Loja alterada");
                         return storeRecord
                     })
                 });
-            
+            console.log("Salvando alteraçao no banco");
             return response.status(200).json(store);
         })
         .catch(async function(err) {
+            console.log("Tratamento de exceção. Algo deu errado!")
             return response.status(401).json({ message: err })
         });
     
@@ -100,6 +111,8 @@ class StoreController {
         return await schema
         .validate(require.body)
         .then(async function(validatedStore) {
+            
+            console.log("Validando loja a ser excluída");
             await Store
                 .findByPk(validatedStore.storeId)
                 .then((toBeDeletedStore) => {
@@ -110,9 +123,12 @@ class StoreController {
                     })
                     return toBeDeletedStore.destroy()
                 });
+
+                console.log("Endereço excluído com sucesso");
             return response.status(200).json({message: "Deletado com sucesso"});
         })
         .catch(async function(err) {
+            console.log("Tratamento de exceção. Algo de errado!");
             return response.status(401).json({ message: err })
         });
     };
