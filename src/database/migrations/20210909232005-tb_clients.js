@@ -9,7 +9,7 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true
       },
-      addressId: {
+      adressId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: 'tb_adresses', key: 'adressId'},

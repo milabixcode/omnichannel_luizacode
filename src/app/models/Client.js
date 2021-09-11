@@ -10,6 +10,7 @@ class Client extends Model {
                 primaryKey: true,
                 autoIncrement: true
             },
+            adressId: Sequelize.INTEGER,
             firstName: Sequelize.STRING,
             lastName: Sequelize.STRING,
             cpf: {
