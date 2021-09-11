@@ -4,6 +4,7 @@ import ClientController from './app/controller/ClientController';
 import ProductController from './app/controller/ProductController';
 import StoreController from './app/controller/StoreController';
 import AdressController from './app/controller/AdressController';
+import OrderController from './app/controller/OrderController'
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -43,9 +44,10 @@ routes.delete('/lista-de-compra', (req, res) => {
     res.json({ message: 'Este é um endpoint que remove um produto da lista de compra do cliente'})
 });
 
-routes.post('/checkout', (res, req) => {
-    res.json({ message: 'Este é um endpoint que finaliza a compra'})
-});
+routes.post('/checkout', OrderController.saveOrder);
+routes.put('/checkout', OrderController.updateOrder);
+//Este é um endpoint que finaliza a compra
+
 
 routes.get('/pedido', (res,req) => {
     res.json({ message: 'Este é um endpoint que consulta todas as compras do cliente'})
