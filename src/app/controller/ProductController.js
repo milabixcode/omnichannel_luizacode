@@ -64,7 +64,7 @@ class ProductController {
                 .findByPk(validatedProduct.productId);
             const deleteProduct = await product
                 .destroy(validatedProduct)
-            return response.status(200).json(deleteProduct, {message: "Deletado com sucesso"});
+            return response.status(200).json({message: "Deletado com sucesso"});
         })
         .catch(async function(err) {
             return response.status(401).json({ message: err })
