@@ -10,7 +10,6 @@ class Client extends Model {
                 primaryKey: true,
                 autoIncrement: true
             },
-            addressId: Sequelize.INTEGER,
             firstName: Sequelize.STRING,
             lastName: Sequelize.STRING,
             cpf: {
@@ -39,8 +38,12 @@ class Client extends Model {
         return this;
     }
     static associate(models){
+<<<<<<< HEAD
+        this.belongsTo( models.Adress, { foreignKey: 'adressId', as: 'address'})
+=======
 
         this.belongsTo( models.Adress, { foreignKey: 'addressId', as: 'address'})
+>>>>>>> 36b83f0b6a86ef1988e0f864f770616aa6573473
     }
 
     checkPassword(password){
