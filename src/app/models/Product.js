@@ -13,6 +13,7 @@ class Product extends Model {
             productName: Sequelize.STRING,
             categoryName: Sequelize.STRING,
             imageUrl: Sequelize.STRING,
+            price: Sequelize.INTEGER,
             createdAt: Sequelize.DATE,
             updatedAt: Sequelize.DATE,
         },

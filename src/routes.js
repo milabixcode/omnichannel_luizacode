@@ -15,6 +15,7 @@ import Order from './app/models/Order';
 const routes = new Router();
 
 routes.get('/product', ProductController.listAllProducts);
+routes.get('/product/:productId', ProductController.getOneProduct);
 routes.post('/product', ProductController.saveProduct);
 routes.put('/product', ProductController.updateProduct);
 routes.delete('/product', ProductController.deleteProduct);

@@ -105,7 +105,11 @@ class ProductController {
         });
     };
 
+    async getOneProduct(require, response) {
+        return response.status(200).json(await Product.findByPk(require.params.productId))
+    }
     
 }
+
 
 export default new ProductController();
