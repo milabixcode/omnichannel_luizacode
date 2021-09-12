@@ -92,13 +92,6 @@ class OrderController {
             } else {
                 return await Product.findByPk(validateItem.product)
                 .then(async function (product) {
-                    // await order.addProduct(product, {through: {
-                    //     value: validateItem.value,
-                    //     quantity: validateItem.quantity
-                                      
-                    // }})
-
-
                     const items = await order.getItems({
                         where: {
                             product: product.productId 
@@ -108,7 +101,6 @@ class OrderController {
                     if(items.length > 0) {
                         const item = items[0]
                         await item.increment('quantity', { by: validateItem.quantity })
-
                     }
                     
                     const inventories = await product.getInventories()
@@ -175,20 +167,20 @@ class OrderController {
                
             } else {
                 return response.status(401).json({ message: `Pedido ${validatedRequest.orderId} não encontrado`})
-
             }
+
             return response.status(200).json()
             
         }).catch((err) => {
             return response.status(401).json(err)
-        })
+        });
     }
 
     async updateOrder(require, response) {
         console.log('Atualizando pedido:', require.body);
-        // const schema = Yup.object().shape({
-        //     orderId: Yup.number().required()
-        // });
+        const schema = Yup.object().shape( {
+            orderId: Yup.number().required()
+        });
     
         return await schema
         .validate(require.body)
@@ -210,6 +202,12 @@ class OrderController {
         });
     
     };
+
+    async admListAllOrders(require, response) {
+        console.log(`Listando todos os pedidos`)
+        const orders = await Order.findAll()
+        return response.status(200).json(orders);
+    }
 }
 
 export default new OrderController();

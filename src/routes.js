@@ -10,10 +10,9 @@ import authMiddleware from './app/middlewares/auth';
 
 import swaggerUI from 'swagger-ui-express';
 import swaggerDocument from '../swagger';
+import Order from './app/models/Order';
 
 const routes = new Router();
-
-//routes.use(authMiddleware);
 
 routes.get('/product', ProductController.listAllProducts);
 routes.post('/product', ProductController.saveProduct);
@@ -39,32 +38,14 @@ routes.delete('/adress', AdressController.deleteAdress);
 routes.put('/order/item', OrderController.addItemToOrder);
 routes.delete('/order/item', OrderController.deleteItemFromOrder);
 
-routes.delete('/lista-de-compra', (req, res) => {
-    res.json({ message: 'Este é um endpoint que remove um produto da lista de compra do cliente'})
-});
+routes.post('/checkout', OrderController.saveOrder);
+routes.put('/checkout', OrderController.updateOrder);
 
-// routes.post('/checkout', OrderController.saveOrder);
-// routes.put('/checkout', OrderController.updateOrder);
-//Este é um endpoint que finaliza a compra
-
-
-routes.get('/pedido', (res,req) => {
-    res.json({ message: 'Este é um endpoint que consulta todas as compras do cliente'})
-});
-
-
+routes.get('/:clientId/order',  ClientController.listAllOrdersFromClient);
+routes.get('/:clientId/order/:orderId', ClientController.listOneOrderFromClient);
+routes.get('/order', OrderController.admListAllOrders);
 
 routes.use('/swagger', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
-
-
-
-// app.get('/terms', (request, response) => {
-//     return response.json({ message: 'Termos de Serviço'});
-
-// });
-
-
-
 
 export default routes;
 

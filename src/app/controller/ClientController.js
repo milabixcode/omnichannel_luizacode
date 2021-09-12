@@ -1,5 +1,6 @@
 import * as Yup from 'yup';
 import Client from '../models/Client';
+import Order from '../models/Order';
 
 
 class ClientController {    
@@ -95,6 +96,37 @@ class ClientController {
             console.log("Tratamento de exceção. Algo deu errado!");
             return response.status(400).json({ message: err })
         });
+    };
+
+    async listAllOrdersFromClient(require, response) {
+        console.log(`Iniciando busca de Pedidos do Cliente:, ${require.params.clientId}`);
+        const orders = await Order.findAll({
+            where: {
+                client: require.params.clientId
+            }
+        });
+
+        if(orders.length == 0) {
+            return response.status(200).json({ message: 'Nenhum pedido encontrado' })
+        } else {
+            return response.status(200).json(orders)
+        }
+    };
+
+    async listOneOrderFromClient(require, response) {
+        console.log(`Iniciando busca do Pedido ${require.params.orderId} do Cliente: ${require.params.clientId}`);
+        const order = await Order.findOne({
+            where: {
+                client: require.params.clientId,
+                orderId: require.params.orderId
+            }
+        });
+
+        if(order == null) {
+            return response.status(200).json({ message: 'Pedido não encontrado'})
+        } else {
+            return response.status(200).json(order)
+        }
     };
 }
 
