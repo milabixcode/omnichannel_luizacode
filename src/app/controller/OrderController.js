@@ -67,14 +67,18 @@ class OrderController {
                             statusDescription: statusAberto
                         }).then(async function (order) {
 
-                            order.setClient(client)
-                            order.setAdress(await client.getAddress())
-                            order.addProduct(product, {through: {
+                            await order.setClient(client)
+                            await order.setAdress(await client.getAddress())
+                            await order.addProduct(product, {through: {
                                 value: validateItem.value,
                                 quantity: validateItem.quantity
                             }})
+                            const inventories = await product.getInventories()
+                            OrderController.sortInventories(inventories)
+                            const inventory = inventories.pop()
+                            await inventory.decrement('quantity', { by: validateItem.quantity })
                             return order
-                            // decrementar a quantidade do inventario de quantidade
+                           
                         }).catch((err) => {
                             console.log(err)
                         })
@@ -88,26 +92,40 @@ class OrderController {
             } else {
                 return await Product.findByPk(validateItem.product)
                 .then(async function (product) {
-                    order.addProduct(product, {through: {
-                        value: validateItem.value,
-                        quantity: validateItem.quantity
-                    // decrementar a quantidade do inventario de quantidade
+                    // await order.addProduct(product, {through: {
+                    //     value: validateItem.value,
+                    //     quantity: validateItem.quantity
+                                      
+                    // }})
 
-                    //se tiver mais de uma loja associada ao produto qual vai ser a 
-                    //estrategia de decremento da quantidade doo produto no estoque.
 
-                    //falta o endpoint que remove o item
-                    //endpoint de finalizar pedido está pronto
-                        
-                    }})
+                    const items = await order.getItems({
+                        where: {
+                            product: product.productId 
+                        }
+                    })
+                    
+                    if(items.length > 0) {
+                        const item = items[0]
+                        await item.increment('quantity', { by: validateItem.quantity })
+
+                    }
+                    
+                    const inventories = await product.getInventories()
+                            OrderController.sortInventories(inventories)
+                            const inventory = inventories.pop()
+                            await inventory.decrement('quantity', { by: validateItem.quantity })
                     return order 
                 })
-            }
-
-            
+            }            
         })
 
         return response.status(200).json(createdOrder)
+    }
+    static sortInventories(inventories) {
+        inventories.sort((a, b) => {
+           return a.quantity - b.quantity
+        })
     }
 
     async deleteItemFromOrder(require, response) {
@@ -137,7 +155,11 @@ class OrderController {
                     console.log('Item encontrado', item)
                     await item.decrement('quantity')
                     await item.reload()
-                    //incrementar no inventario
+                    const product = await item.getReferenceProduct()
+                    const inventories = await product.getInventories()
+                    OrderController.sortInventories(inventories)
+                    const inventory = inventories[0]
+                    inventory.increment('quantity')
 
                     if(item.quantity <= 0) {
                         await item.destroy()

@@ -21,6 +21,10 @@ class Item extends Model {
         });
         return this;
     }
+    static associate(models){
+        this.belongsTo(models.Product, { foreignKey: 'product', as: 'referenceProduct'})
+    }
+
 };
 
 export default Item

@@ -27,6 +27,7 @@ class Product extends Model {
     static associate(models){
         this.belongsToMany( models.Store, {through: Inventory, foreignKey: 'product'})
         this.belongsToMany(models.Order, {through:Item, foreignKey:'product'})
+        this.hasMany(models.Inventory, {foreignKey: 'product'})
     }
 }
 
