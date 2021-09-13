@@ -1,233 +1,735 @@
 module.exports = {
-  swagger: '2.0',
-  info: {
-    description: 'Documentação de API',
-    version: '1.0.0',
-    title: 'OmniChannelLuizaCode',
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "OmniChannelLuizaCode",
+    "description": "Documentação da API"
   },
-  "Access-Control-Allow-Origin": "*",
-  host: 'localhost:3000',
-  schema: ['http'],
-  paths: {
-    '/client': {
-      post: {
-        tags: [
-          'Client',
-        ],
-        parameters: [
-          {
+  "host": "localhost:3333",
+  "basePath": "/",
+  "tags": [],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/product": {
+        "post": {
+        "tags": ['product'],
+        "description": "",
+        "parameters": [{
+            in: 'body',
+            name: 'body',
+            description: 'Campos obrigatórios -> <br> Opcionais ->',
+            required: true,
+            schema: { $ref: '#/definitions/CreateProductBody' },
+          },],
+        "summary": "Cadastrar produto",
+        "responses": {
+          "201": {
+            "description": "Produto Cadastrado"
+          },
+          "401": {
+            "description": "Erro ao cadastrar o produto"
+          }
+        }
+      },
+      "put": {
+        "tags": ['product'],
+        "description": "",
+        "parameters": [{
             in: 'body',
             name: 'body',
             description: 'Você deve passar o email e password no body',
             required: true,
-            schema: { $ref: '#/definitions/PostClientBody'},
+            schema: { $ref: '#/definitions/PutProductBody' },
+          },],
+        "summary": "Atualiza o produto já cadastrado",
+        "responses": {
+          "200": {
+            "description": "Produto atualizado"
           },
-        ],
-        summary: 'Cadastra o cliente',
-        description: '',
-        operationId: 'add',
-        consumes: [
-          'application/json',
-        ],
-        produces: [
-          'application/json',
-        ],
-        responses: {
-          200: {
-            description: 'successful operation',
-            schema: {
-              type: 'array',
-              items: { $ref: '#/definitions/CreateClient' },
-            },
-          },
-          409: { description: 'Cliente já cadastrado' },
-          400: { description: 'Sintaxe inválida.' },
-        },
+          "401": {
+            "description": "Erro ao atualizar o produto"
+          }
+        }
       },
-      put: {
-        tags: [
-          'Client',
-        ],
-        parameters: [
-          {
+      "get": {
+        "tags": ['product'],
+        "description": "",
+        "parameters": [],
+        "summary": "Retorna todos os produtos cadastrados.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": ['product'],
+        "description": "",
+        "parameters": [{
             in: 'body',
             name: 'body',
             description: 'Você deve passar o email e password no body',
             required: true,
-            schema: { $ref: '#/definitions/PutClientBody'},
+            schema: { $ref: '#/definitions/DeleteProductBody' },
+          },],
+        "summary": "Deleta um produto já cadastrado",
+        "responses": {
+          "200": {
+            "description": "Produto deletado"
+          },
+          "401": {
+            "description": "Erro ao deletar o produto"
+          }
+        }
+      }
+    },
+    "/product/{productId}": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "type": "string"
           },
         ],
-        summary: 'Atualizando o cliente',
-        description: '',
-        operationId: 'add',
-        consumes: [
-          'application/json',
-        ],
-        produces: [
-          'application/json',
-        ],
-        responses: {
-          200: {
-            description: 'successful operation',
-            schema: {
-              type: 'array',
-              items: { $ref: '#/definitions/PutClient' },
-            },
+        "summary": "Retorna o produto de acordo com o productId passado nos parâmetros",
+        "responses": {
+          "200": {
+            "description": "Produto retornado"
+          }
+        }
+      }
+    },
+    "/store": {
+        "post": {
+        "tags": ['store'],
+        "description": "Cadastra uma loja",
+        "parameters": [{
+            in: 'body',
+            name: 'body',
+            description: 'Você deve passar o email e password no body',
+            required: true,
+            schema: { $ref: '#/definitions/PostStoreBody' },
+          },],
+        "summary": "Cadastra uma loja",
+        "responses": {
+          "201": {
+            "description": "Loja cadastrada"
           },
-          400: { description: 'Sintaxe inválida.' },
-        },
+          "401": {
+            "description": "Não foi possível cadastrar a loja"
+          }
+        }
       },
+      "put": {
+        "tags": ['store'],
+        "description": "Atualiza a loja",
+        "parameters": [{
+            in: 'body',
+            name: 'body',
+            description: 'Você deve passar o email e password no body',
+            required: true,
+            schema: { $ref: '#/definitions/PutStoreBody' },
+          },],
+        "summary": "Atualiza a loja",
+        "responses": {
+          "200": {
+            "description": "Loja atualizada"
+          },
+          "401": {
+            "description": "Não foi possível atualizar a loja"
+          }
+        }
+      },
+      "get": {
+        "tags": ['store'],
+        "description": "Retorna todas as lojas cadastradas",
+        "summary": "Retorna todas as lojas cadastradas",
+        "parameters": [{
+            in: 'body',
+            name: 'body',
+            description: 'Você deve passar o email e password no body',
+            required: true,
+            schema: { $ref: '#/definitions/GetStoreBody' },
+          },],
+        "responses": {
+          "200": {
+            "description": "Lojas retornadas"
+          }
+        }
+      },
+      "delete": {
+        "tags": ['store'],
+        "description": "",
+        "summary": "Deleta a loja de acordo com o storeID cadastrado",
+        "parameters": [{
+            in: 'body',
+            name: 'body',
+            description: 'Você deve passar o email e password no body',
+            required: true,
+            schema: { $ref: '#/definitions/DeleteStoreBody' },
+          },],
+        "responses": {
+          "200": {
+            "description": "Loja Deletada"
+          },
+          "401": {
+            "description": "Não foi possível deletar a loja"
+          }
+        }
+      }
     },
+    "/client": {
+      "post": {
+        "tags": ['client'],
+        "description": "",
+        "parameters": [{
+            in: 'body',
+            name: 'body',
+            description: 'Você deve passar o email e password no body',
+            required: true,
+            schema: { $ref: '#/definitions/PostClientBody' },
+          },],
+        "summary": "Cadastra um cliente",
+        "responses": {
+          "201": {
+            "description": "Cliente cadastrado"
+          },
+          "400": {
+            "description": "Erro ao tentar cadastrar o cliente"
+          }
+        }
+      },
+      "put": {
+        "tags": ['client'],
+        "description": "",
+        "parameters": [{
+            in: 'body',
+            name: 'body',
+            description: 'Você deve passar o email e password no body',
+            required: true,
+            schema: { $ref: '#/definitions/PutClientBody' },
+          },],
+        "summary": "Atualiza um cliente cadastrado",
+        "responses": {
+          "200": {
+            "description": "Cliente atualizado"
+          },
+          "400": {
+            "description": "Erro ao atualizar o cliente"
+          }
+        }
+      },
+      "get": {
+        "tags": ['client'],
+        "description": "",
+        "parameters": [],
+        "summary": "Retorna os dados do cliente",
+        "responses": {
+          "200": {
+            "description": "Client retornado"
+          }
+        }
+      },
+      "delete": {
+        "tags": ['client'],
+        "description": "",
+        "parameters": [{
+            in: 'body',
+            name: 'body',
+            description: 'Você deve passar o email e password no body',
+            required: true,
+            schema: { $ref: '#/definitions/DeleteClientBody' },
+          },],
+        "summary": "Deleta o cliente informado",
+        "responses": {
+          "200": {
+            "description": "Cliente deletado"
+          },
+          "400": {
+            "description": "Erro ao deletar o cliente"
+          }
+        }
+      }
+    },
+    "/adress": {
+      "post": {
+        "tags": ['adress'],
+        "description": "",
+        "parameters": [{
+            in: 'body',
+            name: 'body',
+            description: 'Você deve passar o email e password no body',
+            required: true,
+            schema: { $ref: '#/definitions/PostAdressBody' },
+          },],
+        "summary": "Cadastra o endereço",
+        "responses": {
+          "201": {
+            "description": "Endereço cadastrado"
+          },
+          "401": {
+            "description": "Erro ao cadastrar o endereço"
+          }
+        }
+      },
+      "put": {
+        "tags": ['adress'],
+        "description": "",
+        "parameters": [{
+            in: 'body',
+            name: 'body',
+            description: 'Você deve passar o email e password no body',
+            required: true,
+            schema: { $ref: '#/definitions/PutAdressBody' },
+          },],
+        "summary": "Atualiza o endereço cadastrado",
+        "responses": {
+          "200": {
+            "description": "Endereço atualizado"
+          },
+          "401": {
+            "description": "Erro ao atualizar o endereço"
+          }
+        }
+      },
+      "get": {
+        "tags": ['adress'],
+        "description": "",
+        "parameters": [],
+        "summary": "Retorna os endereços cadastrados",
+        "responses": {
+          "200": {
+            "description": "Endereços retornados"
+          }
+        }
+      },
+      "delete": {
+        "tags": ['adress'],
+        "description": "",
+        "parameters": [{
+            in: 'body',
+            name: 'body',
+            description: 'Você deve passar o email e password no body',
+            required: true,
+            schema: { $ref: '#/definitions/DeleteAdressBody' },
+          },],
+        "summary": "Deleta o endereço cadastrado",
+        "responses": {
+          "200": {
+            "description": "Endereço deletado"
+          },
+          "401": {
+            "description": "Erro ao tentar deletar o endereço"
+          }
+        }
+      }
+    },
+    "/order/item": {
+      "put": {
+        "tags": [],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/{clientId}/order/item/{productId}": {
+      "delete": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/checkout": {
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [{
+            in: 'body',
+            name: 'body',
+            description: 'Você deve passar o email e password no body',
+            required: true,
+            schema: { $ref: '#/definitions/PostCheckoutBody' },
+          },],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/{clientId}/order": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/{clientId}/order/{orderId}": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/order": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
   },
-  securityDefinitions: {
-    api_key: {
-      type: 'apiKey',
-      name: 'api_key',
-      in: 'header',
-    },
-  },
-  definitions: {
-    Client: {
-      type: 'object',
-      required: [
-        'name',
-        'email',
-        'password',
+  "definitions": {
+    "CreateProductBody": {
+      "type": "object",
+      "required": [
+        "productName",
+        "categoryName",
+        "imageUrl",
+        "store",
+        "quantity",
+        "price"
       ],
-      properties: {
-        id: {
-          type: 'integer',
-          format: 'integer',
-        },
-        name: { type: 'string' },
-        email: { type: 'string' },
-        password: { type: 'string' },
+      "properties": {
+        "productName": { type: 'string' },
+        "categoryName": { type: 'string' },
+        "imageUrl": { type: 'url' },
+        "store": { type: 'number' },
+        "quantity": { type: 'number' },
+        "price": { type: 'number' },
       },
-      xml: { name: 'Client' },
+      xml: { name: 'product' },
     },
-    LoginBody: {
-      type: 'object',
-      required: [
-        'email',
-        'password',
+    "PutProductBody": {
+      "type": "object",
+      "required": [
+        "productId",
+        "productName",
+        "categoryName",
+        "imageUrl",
+        "store",
+        "quantity",
+        "price"
       ],
-      properties: {
-        email: { type: 'string' },
-        password: { type: 'string' },
+      "properties": {
+        "productId": { type: 'number' },
+        "productName": { type: 'string' },
+        "categoryName": { type: 'string' },
+        "imageUrl": { type: 'url' },
+        "store": { type: 'number' },
+        "quantity": { type: 'number' },
+        "price": { type: 'number' },
       },
-      xml: { name: 'Client' },
+      xml: { name: 'product' },
     },
-    CreateClient: {
-      type: 'object',
-      required: [
-        'adressId',
-        'firstName',
-        'lastName',
-        'email',
-        'password',
-        'option'
+      "DeleteProductBody": {
+      "type": "object",
+      "required": [
+        "productId"
       ],
-      properties: {
-        id: {
-          type: 'integer',
-          format: 'uuid',
-        },
-        adressId: { type: 'number' },
-        firstName: { type: 'string' },
-        lastName: { type: 'string' },
-        cpf: { type: 'string' },
-        cnpj: { type: 'string' },
-        birthDate: { type: 'date' },
-        email: { type: 'string' },
-        password: { type: 'string' },
-        phone: { type: 'string' },
-        option: { type: 'string' }
+      "properties": {
+        "productId": { type: 'number' }
       },
-      xml: { name: 'Client' },
+      xml: { name: 'product' },
     },
-    PostClientBody: {
-      type: 'object',
-      required: [
-        'adressId',
-        'firstName',
-        'lastName',
-        'email',
-        'password',
-        'option'
-      ],
-      properties: {
-        adressId: { type: 'number' },
-        firstName: { type: 'string' },
-        lastName: { type: 'string' },
-        cpf: { type: 'string' },
-        cnpj: { type: 'string' },
-        birthDate: { type: 'date' },
-        email: { type: 'string' },
-        password: { type: 'string' },
-        phone: { type: 'string' },
-        option: { type: 'string' }
+    "PostStoreBody": {
+    "type": "object",
+    "required": [
+      "adressName",
+      "adressNumber",
+      "adressCEP",
+      "adressCity",
+      "adressState"
+    ],
+    "properties": {
+      "adressName": { type: 'string' },
+      "adressNumber": { type: 'number' },
+      "adressCEP": { type: 'string' },
+      "adressCity": { type: 'string' },
+      "adressState": { type: 'string' }
       },
-      xml: { name: 'Client' },
+    xml: { name: 'store' },
     },
-    PutClientBody: {
-      type: 'object',
-      required: [
-        'clientId',
-        'adressId',
-        'firstName',
-        'lastName',
-        'email',
-        'password',
-        'option'
-      ],
-      properties: {
-        clientId: { type: 'number' },
-        adressId: { type: 'number' },
-        firstName: { type: 'string' },
-        lastName: { type: 'string' },
-        cpf: { type: 'string' },
-        cnpj: { type: 'string' },
-        birthDate: { type: 'date' },
-        email: { type: 'string' },
-        password: { type: 'string' },
-        phone: { type: 'string' },
-        option: { type: 'string' }
+    "PutStoreBody": {
+    "type": "object",
+    "required": [
+      "adressId",
+      "adressName",
+      "adressNumber",
+      "adressCEP",
+      "adressCity",
+      "adressState"
+    ],
+    "properties": {
+      "adressId": { type: 'number' },
+      "adressName": { type: 'string' },
+      "adressNumber": { type: 'number' },
+      "adressCEP": { type: 'string' },
+      "adressCity": { type: 'string' },
+      "adressState": { type: 'string' }
       },
-      xml: { name: 'Client' },
+    xml: { name: 'store' },
     },
-      PutClient: {
-      type: 'object',
-      required: [
-        'clientId',
-        'adressId',
-        'firstName',
-        'lastName',
-        'email',
-        'password',
-        'option'
-      ],
-      properties: {
-        id: {
-          type: 'integer',
-          format: 'uuid',
-        },
-        clientId: { type: 'number' },
-        adressId: { type: 'number' },
-        firstName: { type: 'string' },
-        lastName: { type: 'string' },
-        cpf: { type: 'string' },
-        cnpj: { type: 'string' },
-        birthDate: { type: 'date' },
-        email: { type: 'string' },
-        password: { type: 'string' },
-        phone: { type: 'string' },
-        option: { type: 'string' }
+    "GetStoreBody": {
+    "type": "object",
+    "required": [
+      "adressId",
+      "adressName",
+      "adressNumber",
+      "adressCEP",
+      "adressCity",
+      "adressState"
+    ],
+    "properties": {
+      "adressId": { type: 'number' },
+      "adressName": { type: 'string' },
+      "adressNumber": { type: 'number' },
+      "adressCEP": { type: 'string' },
+      "adressCity": { type: 'string' },
+      "adressState": { type: 'string' }
       },
-      xml: { name: 'Client' },
+    xml: { name: 'store' },
     },
-  },
-  externalDocs: {
-    description: 'Acesse o repositorio',
-    url: 'http://github.com',
-  },
+    "DeleteStoreBody": {
+    "type": "object",
+    "required": [
+      "adressId",
+      "adressName",
+      "adressNumber",
+      "adressCEP",
+      "adressCity",
+      "adressState"
+    ],
+    "properties": {
+      "adressId": { type: 'number' },
+      "adressName": { type: 'string' },
+      "adressNumber": { type: 'number' },
+      "adressCEP": { type: 'string' },
+      "adressCity": { type: 'string' },
+      "adressState": { type: 'string' }
+      },
+    xml: { name: 'store' },
+    },
+    "PostClientBody": {
+    "type": "object",
+    "required": [
+      "adressId",
+      "firstName",
+      "lastName",
+      "cpf",
+      "cnpj",
+      "birthDate",
+      "email",
+      "password",
+      "phone",
+      "option"
+    ],
+    "properties": {
+      "adressId": { type: 'number' },
+      "firstName": { type: 'string' },
+      "lastName": { type: 'string' },
+      "cpf": { type: 'string' },
+      "cnpj": { type: 'string' },
+      "birthDate": { type: 'date' },
+      "email": { type: 'string' },
+      "password": { type: 'string' },
+      "phone": { type: 'string' },
+      "option": { type: 'string' },
+      },
+    xml: { name: 'client' },
+    },
+    "PutClientBody": {
+    "type": "object",
+    "required": [
+      "clientId",
+      "adressId",
+      "firstName",
+      "lastName",
+      "cpf",
+      "cnpj",
+      "birthDate",
+      "email",
+      "password",
+      "phone",
+      "option"
+    ],
+    "properties": {
+      "clientId": { type: 'number' },
+      "adressId": { type: 'number' },
+      "firstName": { type: 'string' },
+      "lastName": { type: 'string' },
+      "cpf": { type: 'string' },
+      "cnpj": { type: 'string' },
+      "birthDate": { type: 'date' },
+      "email": { type: 'string' },
+      "password": { type: 'string' },
+      "phone": { type: 'string' },
+      "option": { type: 'string' },
+      },
+    xml: { name: 'client' },
+    },
+    "DeleteClientBody": {
+    "type": "object",
+    "required": [
+      "clientId"
+    ],
+    "properties": {
+      "clientId": { type: 'number' }
+      },
+    xml: { name: 'client' },
+    },
+    "PostAdressBody": {
+    "type": "object",
+    "required": [
+      "adressName",
+      "addressStreet",
+      "adressNumber",
+      "adressCEP",
+      "adressCity",
+      "adressState"
+    ],
+    "properties": {
+      "adressName": { type: 'string' },
+      "addressStreet": { type: 'string' },
+      "adressNumber": { type: 'number' },
+      "adressCEP": { type: 'string' },
+      "adressCity": { type: 'string' },
+      "adressState": { type: 'string' }
+      },
+    xml: { name: 'client' },
+    },
+    "PutAdressBody": {
+    "type": "object",
+    "required": [
+      "adressId",
+      "adressName",
+      "adressNumber",
+      "adressCEP",
+      "adressCity",
+      "adressState"
+    ],
+    "properties": {
+      "adressId": { type: 'number' },
+      "adressName": { type: 'string' },
+      "adressNumber": { type: 'number' },
+      "adressCEP": { type: 'string' },
+      "adressCity": { type: 'string' },
+      "adressState": { type: 'string' }
+      },
+    xml: { name: 'client' },
+    },
+    "DeleteAdressBody": {
+    "type": "object",
+    "required": [
+      "adressId"
+    ],
+    "properties": {
+      "adressId": { type: 'number' }
+      },
+    xml: { name: 'client' },
+    },
+    "PostAdress": {
+    "type": "object",
+    "required": [
+      "adressName",
+      "adressNumber",
+      "adressCEP",
+      "adressCity",
+      "adressState"
+    ],
+    "properties": {
+      "adressId": { type: 'number', format: 'uuid' },
+      "adressName": { type: 'string' },
+      "adressNumber": { type: 'number' },
+      "adressCEP": { type: 'string' },
+      "adressCity": { type: 'string' },
+      "adressState": { type: 'string' }
+      },
+    xml: { name: 'client' },
+    },
+  }
 }
