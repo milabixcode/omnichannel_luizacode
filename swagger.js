@@ -25,7 +25,7 @@ module.exports = {
             required: true,
             schema: { $ref: '#/definitions/CreateProductBody' },
           },],
-        "summary": "Cadastrar produto",
+        "summary": "Cadastra produto",
         "responses": {
           "201": {
             "description": "Produto Cadastrado"
@@ -59,7 +59,7 @@ module.exports = {
         "tags": ['product'],
         "description": "",
         "parameters": [],
-        "summary": "Retorna todos os produtos cadastrados.",
+        "summary": "Retorna todos os produtos cadastrados",
         "responses": {
           "200": {
             "description": "OK"
@@ -89,7 +89,7 @@ module.exports = {
     },
     "/product/{productId}": {
       "get": {
-        "tags": [],
+        "tags": ['product'],
         "description": "",
         "parameters": [
           {
@@ -321,7 +321,7 @@ module.exports = {
             required: true,
             schema: { $ref: '#/definitions/DeleteAdressBody' },
           },],
-        "summary": "Deleta o endereço cadastrado",
+        "summary": "Deleta o endereço informado",
         "responses": {
           "200": {
             "description": "Endereço deletado"
@@ -334,8 +334,9 @@ module.exports = {
     },
     "/order/item": {
       "put": {
-        "tags": [],
+        "tags": ["order"],
         "description": "",
+        "summary": "Adiciona um item ao pedido",
         "parameters": [],
         "responses": {
           "200": {
@@ -346,8 +347,9 @@ module.exports = {
     },
     "/{clientId}/order/item/{productId}": {
       "delete": {
-        "tags": [],
+        "tags": ["order"],
         "description": "",
+        "summary": "Deleta um item do pedido do cliente",
         "parameters": [
           {
             "name": "clientId",
@@ -374,8 +376,9 @@ module.exports = {
     },
     "/checkout": {
       "post": {
-        "tags": [],
+        "tags": ["order"],
         "description": "",
+        "summary": "Finaliza o pedido",
         "parameters": [{
             in: 'body',
             name: 'body',
@@ -393,8 +396,9 @@ module.exports = {
         }
       },
       "put": {
-        "tags": [],
+        "tags": ["order"],
         "description": "",
+        "summary": "Atualiza o pedido",
         "parameters": [],
         "responses": {
           "200": {
@@ -408,8 +412,9 @@ module.exports = {
     },
     "/{clientId}/order": {
       "get": {
-        "tags": [],
+        "tags": ["order"],
         "description": "",
+        "summary": "Retorna todos os pedidos do cliente",
         "parameters": [
           {
             "name": "clientId",
@@ -427,8 +432,9 @@ module.exports = {
     },
     "/{clientId}/order/{orderId}": {
       "get": {
-        "tags": [],
+        "tags": ["order"],
         "description": "",
+        "summary": "Retorna um pedido específico do cliente",
         "parameters": [
           {
             "name": "clientId",
@@ -452,8 +458,9 @@ module.exports = {
     },
     "/order": {
       "get": {
-        "tags": [],
+        "tags": ["order"],
         "description": "",
+        "summary": "Retorna todos os pedidos para o adm",
         "parameters": [],
         "responses": {
           "200": {
