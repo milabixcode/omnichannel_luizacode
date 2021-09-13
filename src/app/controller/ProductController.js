@@ -27,6 +27,7 @@ class ProductController {
                     productName: validatedProduct.productName,
                     categoryName: validatedProduct.categoryName,
                     imageUrl: validatedProduct.imageUrl,
+                    price: validatedProduct.price
                 }
                 const savedProduct = await Product.create(product)
                 const store = await Store.findByPk(validatedProduct.store)
