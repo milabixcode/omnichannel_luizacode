@@ -58,7 +58,7 @@ class AdressController {
         })
         .catch(async function(err) {
             console.log("Tratamento de exceção. Algo deu errado!")
-            return response.status(401).json({ message: err })
+            return response.status(401).json({ message: "Algo deu errado!", err });
         });
     
     };

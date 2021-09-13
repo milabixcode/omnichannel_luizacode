@@ -37,7 +37,7 @@ class ClientController {
             .catch(async function (err) {
                 console.log("Tratamento de exceção. Algo deu errado!");
                 
-                return response.status(400).json({ message: err });
+                return response.status(400).json({ message: "Algo deu errado!", err });
             });
     };    
 
@@ -63,7 +63,7 @@ class ClientController {
         })
         .catch(async function(err) {
             console.log("Tratamento de exceção. Algo deu errado!");
-            return response.status(400).json({ message: err })
+            return response.status(400).json({ message: "Algo deu errado!", err })
         });
     
     };
@@ -94,7 +94,7 @@ class ClientController {
         })
         .catch(async function(err) {
             console.log("Tratamento de exceção. Algo deu errado!");
-            return response.status(400).json({ message: err })
+            return response.status(400).json({ message: "Algo deu errado!", err })
         });
     };
 
