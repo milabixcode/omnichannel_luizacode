@@ -39,7 +39,7 @@ Omnichannel do cliente. Esse serviço atendem os seguintes requisitos:
 ## ``ARQUITETURA``
 BANCO DE DADOS
 
-![Banco de dados](readme-assents/images/banco-de-dados.png)
+![Banco de dados](readme-assents/images/banco-de-dados2.png)
 
 <br>
 
