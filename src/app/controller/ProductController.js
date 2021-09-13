@@ -12,7 +12,8 @@ class ProductController {
             categoryName: Yup.string().required(),
             imageUrl: Yup.string().url().required(),
             store: Yup.number().required(),
-            quantity: Yup.number().required()
+            quantity: Yup.number().required(),
+            price: Yup.number().required()
         });    
 
         console.log("Validando produto");
