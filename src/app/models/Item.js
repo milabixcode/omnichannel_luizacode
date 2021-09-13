@@ -9,7 +9,6 @@ class Item extends Model {
                 autoIncrement: true
             },
             quantity: Sequelize.INTEGER,
-            value: Sequelize.INTEGER,
             createdAt: Sequelize.DATE,
             updatedAt: Sequelize.DATE
         },

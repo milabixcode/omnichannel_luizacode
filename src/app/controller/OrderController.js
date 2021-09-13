@@ -39,7 +39,6 @@ class OrderController {
             client: Yup.number().required(),
 	        product: Yup.number().required(),
             quantity: Yup.string().required(),
-            value: Yup.number().required()
         })
 
         const createdOrder = await schema.validate(require.body)
@@ -121,17 +120,28 @@ class OrderController {
     }
 
     async deleteItemFromOrder(require, response) {
-        console.log('Iniciando a remoção do item do pedido')
+        console.log('Iniciando a remoção do item do pedido', require.body)
+        const statusAberto = "ABERTO";
+
 
         const schema = Yup.object().shape({
-            orderId: Yup.number().required(),
+            clientId: Yup.number().required(),
             orderProductId: Yup.number().required()
         })
 
+        const deleteItem = {
+            clientId: require.params.clientId,
+            orderProductId: require.params.productId
+        }
+
         return await schema
-        .validate(require.body)
+        .validate(deleteItem)
         .then(async function(validatedRequest){
-            const order = await Order.findByPk(validatedRequest.orderId);
+            const order = await Order.findOne({
+                where: {
+                    client: validatedRequest.clientId,
+                    statusDescription: statusAberto                }
+            });
             console.log(`Resultado da busca do Pedido: , ${order}`)
             if(order){
                 console.log('Pedido encontrado')
@@ -166,7 +176,7 @@ class OrderController {
                 }
                
             } else {
-                return response.status(401).json({ message: `Pedido ${validatedRequest.orderId} não encontrado`})
+                return response.status(401).json({ message: `Pedido ${validatedRequest.clientId} não encontrado`})
             }
 
             return response.status(200).json()
