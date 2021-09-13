@@ -39,8 +39,8 @@ routes.delete('/adress', AdressController.deleteAdress);
 routes.put('/order/item', OrderController.addItemToOrder);
 routes.delete('/:clientId/order/item/:productId', OrderController.deleteItemFromOrder);
 
-routes.post('/checkout', OrderController.saveOrder);
 routes.put('/checkout', OrderController.updateOrder);
+routes.post('/checkout', OrderController.checkoutOrder);
 
 routes.get('/:clientId/order',  ClientController.listAllOrdersFromClient);
 routes.get('/:clientId/order/:orderId', ClientController.listOneOrderFromClient);

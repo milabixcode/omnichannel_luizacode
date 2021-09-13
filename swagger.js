@@ -81,7 +81,7 @@ module.exports = {
           "200": {
             "description": "Produto deletado"
           },
-          "401": {
+          "404": {
             "description": "Erro ao deletar o produto"
           }
         }
@@ -103,6 +103,9 @@ module.exports = {
         "responses": {
           "200": {
             "description": "Produto retornado"
+          },
+          "404": {
+            "description": "Erro ao retornar o produto"
           }
         }
       }
@@ -162,6 +165,9 @@ module.exports = {
         "responses": {
           "200": {
             "description": "Lojas retornadas"
+          },
+          "401": {
+            "description": "Erro ao retornar lojas"
           }
         }
       },

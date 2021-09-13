@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 import Client from '../models/Client';
 import Order from '../models/Order';
 import Product from '../models/Product';
+import Adress from '../models/Adress';
 
 
 class OrderController {    
@@ -198,7 +199,7 @@ class OrderController {
             
             console.log("Validando pedido");
             const order = await Order.findByPk(validatedOrder.orderId);
-            console.log("Validade com sucesso");
+            console.log("Validado com sucesso");
 
             const updatedOrder = await order.update(validatedOrder);
             console.log("Pedido atualizado");
@@ -212,6 +213,48 @@ class OrderController {
         });
     
     };
+
+    async checkoutOrder(require, response) {
+        const statusAberto = "ABERTO";
+        const statusRealizado = "REALIZADO";
+        console.log("Finalizando o pedido", require.body);
+        const schema = Yup.object().shape( {
+            clientId: Yup.number().required(),
+            adressId: Yup.number().required()
+        });
+
+        return await schema 
+        .validate(require.body)
+        .then(async function(validatedCheckoutOrder) {
+            try {
+                console.log("Pedido Encontrado para finalização")
+                const order = await Order.findOne({
+                    where: {
+                        client: validatedCheckoutOrder.clientId,
+                        statusDescription: statusAberto
+                    }
+                })
+    
+                if(order) {
+                    const adress = await Adress.findByPk(validatedCheckoutOrder.adressId)
+                    order.setAdress(adress)
+                    const possbibleOrder = {
+                        statusDescription: statusRealizado
+                    }
+                    order.update(possbibleOrder)
+                    return response.status(200).json(order)
+                }
+            } catch (err) {
+                console.log(err)
+            }
+            
+            return response.status(200).json(checkoutOrder);
+        })
+        .catch(async function(err) {
+            console.log("Tratamento de exceção. Algo deu errado!");
+            return response.status(400).json({ message: "Algo deu errado!", err })
+        });
+    }
 
     async admListAllOrders(require, response) {
         console.log(`Listando todos os pedidos`)
