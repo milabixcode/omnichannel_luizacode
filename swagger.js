@@ -41,7 +41,7 @@ module.exports = {
         "parameters": [{
             in: 'body',
             name: 'body',
-            description: 'Você deve passar o email e password no body',
+            description: '',
             required: true,
             schema: { $ref: '#/definitions/PutProductBody' },
           },],
@@ -56,7 +56,7 @@ module.exports = {
         }
       },
       "get": {
-        "tags": ['product'],
+        "tags": ['product', 'obrigatorio'],
         "description": "",
         "parameters": [],
         "summary": "Retorna todos os produtos cadastrados",
@@ -152,16 +152,10 @@ module.exports = {
         }
       },
       "get": {
-        "tags": ['store'],
+        "tags": ['store', 'obrigatorio'],
         "description": "Retorna todas as lojas cadastradas",
         "summary": "Retorna todas as lojas cadastradas",
-        "parameters": [{
-            in: 'body',
-            name: 'body',
-            description: 'Você deve passar o email e password no body',
-            required: true,
-            schema: { $ref: '#/definitions/GetStoreBody' },
-          },],
+        
         "responses": {
           "200": {
             "description": "Lojas retornadas"
@@ -194,7 +188,7 @@ module.exports = {
     },
     "/client": {
       "post": {
-        "tags": ['client'],
+        "tags": ['client', 'obrigatorio'],
         "description": "",
         "parameters": [{
             in: 'body',
@@ -388,7 +382,7 @@ module.exports = {
         "parameters": [{
             in: 'body',
             name: 'body',
-            description: 'Você deve passar o email e password no body',
+            description: '',
             required: true,
             schema: { $ref: '#/definitions/PostCheckoutBody' },
           },],
@@ -418,7 +412,7 @@ module.exports = {
     },
     "/{clientId}/order": {
       "get": {
-        "tags": ["order"],
+        "tags": ["order", "obrigatorio"],
         "description": "",
         "summary": "Retorna todos os pedidos do cliente",
         "parameters": [
@@ -744,5 +738,17 @@ module.exports = {
       },
     xml: { name: 'client' },
     },
+    "PostCheckoutBody":{
+      "type": "object",
+    "required": [
+      "clientId",
+      "adressId"
+    ],
+    "properties": {
+      "adressId": { type: 'number', format: 'uuid' },
+      "clientId": { type: 'number', format: 'uuid' }
+      },
+      xml: { name: 'order' },
+    }
   }
 }
