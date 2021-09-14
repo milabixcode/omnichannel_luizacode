@@ -111,3 +111,6 @@ Edite o arquivo server.js dentro da pasta src
 <br>
 
 ## ``CONSIDERAÇÕES_DESENVOLVIMENTO``
+
+Link para repositório do frontend:
+https://github.com/milabixcode/luiza-coders-frontend-react.git
